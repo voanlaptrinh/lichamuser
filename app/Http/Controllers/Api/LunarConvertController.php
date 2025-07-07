@@ -10,7 +10,7 @@ class LunarConvertController extends Controller
 {
    public function convertToAm(Request $request)
     {
-        $date = $request->input('date');
+        $date = $request->duong_date;
         try {
             [$yy, $mm, $dd] = explode('-', $date);
             $al = LunarHelper::convertSolar2Lunar((int)$dd, (int)$mm, (int)$yy);
@@ -23,7 +23,7 @@ class LunarConvertController extends Controller
 
     public function convertToDuong(Request $request)
     {
-        $date = $request->input('date');
+        $date = $request->am_date;
         try {
             [$yy, $mm, $dd] = explode('-', $date);
             $dl = LunarHelper::convertLunar2Solar((int)$dd, (int)$mm, (int)$yy, 0); // mặc định không nhuận

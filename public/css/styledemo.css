@@ -382,9 +382,11 @@
        background: rgb(255 234 234);
        color: #c20000;
    }
-a:hover{
-    color: #c20000;
-}
+
+   a:hover {
+       color: #c20000;
+   }
+
    .header-calendar {
        display: flex;
        justify-content: space-between;
@@ -1019,8 +1021,9 @@ a:hover{
        .ddmmyy {
            color: #fff;
        }
-       .widget-title-cat2{
-        font-size: 22px;
+
+       .widget-title-cat2 {
+           font-size: 22px;
        }
    }
 
@@ -1097,132 +1100,230 @@ a:hover{
        border-bottom: 3px solid transparent;
        transition: all .3s ease;
    }
-   .vncal-header {
-    width: 100%;
-    font-weight: 700;
-    text-align: center;
-    color: #fff;
-    background: #e5c1c2;
-    position: relative;
-    border-bottom: 1px solid #e5c1c2;
-    box-shadow: 1px 1px 1px #888;
-    margin-top: 10px;
-}
-.vncal-header-titles{
-    padding-top: 9px;
-}
-.table-actent>tbody>tr>td{
-    vertical-align: middle;
-}
-.p-title {
-    margin: 20px 0 15px;
-    color: #c20000;
-    font-size: 25px;
-    position: relative;
-    padding-bottom: 10px;
-    border-bottom: 4px solid #f0f0f0;
-}
-.p-title:before {
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    content: "";
-    width: 90px;
-    height: 4px;
-    background: #c20000;
-    display: block;
-}
-.breadcrumb {
-    display: inherit;
-    background: #ffeaea;
-    padding: 5px 10px;
-    margin-bottom: 10px;
-    margin-top: 0;
-    font-weight: 600;
-}
-.breadcrumb {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    list-style: none;
-    border-radius: 0;
-}
-.breadcrumb>li {
-    display: inline-block;
-}
-.breadcrumb li a {
-    color: #c20000;
-    font-size: 14px;
-}
-.breadcrumb>li+li:before {
-    padding: 0 5px;
-    color: #f0c9c9;
-    content: "/ ";
-}
-.hd-day .dh-tot {
-    color: #f00;
-}
-.hd-day .dh-xau {
-    color: #95149a;
-}
-.page-year .hd-day {
-    margin-bottom: 20px;
-}
-.hd-day {
-    text-align: center;
-    margin-top: 20px;
-}
-.tag-sidebar {
-    margin: 10px 0;
-    list-style: none;
-    overflow: hidden;
-    padding: 0;
-}
-.tag-sidebar li:hover {
-    background-color: #c20000;
-}
-.tag-sidebar li {
-    float: left;
-    margin-right: 15px;
-    background-color: #bdbdbd;
-    border-radius: 3px;
-    margin-bottom: 10px;
-}
-.tag-sidebar li a {
-    padding: 5px;
-    color: #333;
-    font-size: 18px;
-}
-@media only screen and (max-width: 320px) {
-    h1 {
-        font-size: 23px !important;
-        font-weight: 700;
-    }
-        h2 {
-        font-size: 20px !important;
-        font-weight: 600;
-    }
-}
-.calendar-table .skip{
-    background: rgb(255 234 234);
-}
-.ngay-item-lich-nam-thang:hover{
-    background: #f4e9e9;
-    color: #c20000;
-    font-weight: 700;
-}
-.boder_fix {
-    border-right: solid 0.5px #e0e0e0;
-    padding-right: 15px;
-    float: left;
-    width: 100%;
-}
 
-@media only screen and (max-width: 1000px) {
-    .boder_fix {
-        border-right: 0;
-        padding-right: 0;
-    }
-}
-.nav-link{
-    color: #000;
+   .vncal-header {
+       width: 100%;
+       font-weight: 700;
+       text-align: center;
+       color: #fff;
+       background: #e5c1c2;
+       position: relative;
+       border-bottom: 1px solid #e5c1c2;
+       box-shadow: 1px 1px 1px #888;
+       margin-top: 10px;
+   }
+
+   .vncal-header-titles {
+       padding-top: 9px;
+   }
+
+   .table-actent>tbody>tr>td {
+       vertical-align: middle;
+   }
+
+   .p-title {
+       margin: 20px 0 15px;
+       color: #c20000;
+       font-size: 25px;
+       position: relative;
+       padding-bottom: 10px;
+       border-bottom: 4px solid #f0f0f0;
+   }
+
+   .p-title:before {
+       position: absolute;
+       bottom: -4px;
+       left: 0;
+       content: "";
+       width: 90px;
+       height: 4px;
+       background: #c20000;
+       display: block;
+   }
+
+   .breadcrumb {
+       display: inherit;
+       background: #ffeaea;
+       padding: 5px 10px;
+       margin-bottom: 10px;
+       margin-top: 0;
+       font-weight: 600;
+   }
+
+   .breadcrumb {
+       margin-top: 10px;
+       margin-bottom: 5px;
+       list-style: none;
+       border-radius: 0;
+   }
+
+   .breadcrumb>li {
+       display: inline-block;
+   }
+
+   .breadcrumb li a {
+       color: #c20000;
+       font-size: 14px;
+   }
+
+   .breadcrumb>li+li:before {
+       padding: 0 5px;
+       color: #f0c9c9;
+       content: "/ ";
+   }
+
+   .hd-day .dh-tot {
+       color: #f00;
+   }
+
+   .hd-day .dh-xau {
+       color: #95149a;
+   }
+
+   .page-year .hd-day {
+       margin-bottom: 20px;
+   }
+
+   .hd-day {
+       text-align: center;
+       margin-top: 20px;
+   }
+
+   .tag-sidebar {
+       margin: 10px 0;
+       list-style: none;
+       overflow: hidden;
+       padding: 0;
+   }
+
+   .tag-sidebar li:hover {
+       background-color: #c20000;
+   }
+
+   .tag-sidebar li {
+       float: left;
+       margin-right: 15px;
+       background-color: #bdbdbd;
+       border-radius: 3px;
+       margin-bottom: 10px;
+   }
+
+   .tag-sidebar li a {
+       padding: 5px;
+       color: #333;
+       font-size: 18px;
+   }
+
+   @media only screen and (max-width: 320px) {
+       h1 {
+           font-size: 23px !important;
+           font-weight: 700;
+       }
+
+       h2 {
+           font-size: 20px !important;
+           font-weight: 600;
+       }
+   }
+
+   .calendar-table .skip {
+       background: rgb(255 234 234);
+   }
+
+   .ngay-item-lich-nam-thang:hover {
+       background: #f4e9e9;
+       color: #c20000;
+       font-weight: 700;
+   }
+
+   .boder_fix {
+       border-right: solid 0.5px #e0e0e0;
+       padding-right: 15px;
+       float: left;
+       width: 100%;
+   }
+
+   @media only screen and (max-width: 1000px) {
+       .boder_fix {
+           border-right: 0;
+           padding-right: 0;
+       }
+   }
+
+   .nav-link {
+       color: #000;
+   }
+
+   .vncal-header-titles h4 {
+       color: white;
+   }
+
+   .tag-sidebar a:hover {
+       color: white;
+   }
+
+   .widget-title {
+
+       position: relative;
+       margin-bottom: 0;
+
+   }
+
+   .accordion_title {
+       float: left;
+       font-weight: normal;
+   }
+
+   .accordion_item1 {
+       padding-top: 6px;
+       padding-bottom: 0px;
+       position: relative;
+       width: 100%;
+       float: left;
+       border-bottom: solid 0.5px #e0e0e0;
+   }
+
+   .breadcrumb1 {
+       float: left;
+       width: 100%;
+       margin-bottom: 10px;
+       border-bottom: solid 0.5px #e0e0e0;
+       padding-bottom: 10px;
+   }
+
+   .breadcrumb1-item {
+       display: inline;
+       font-size: 13px;
+       color: #6f6f6f;
+   }
+
+   .breadcrumb1-item+:before {
+       padding: 0 5px;
+       color: #6f6f6f;
+       content: "/\00a0";
+   }
+
+   .font14 {
+       font-size: 14px;
+   }
+
+   .bg-wg2 {
+       background: red
+   }
+   .nav-link:focus, .nav-link:hover{
+    color: #dc1435;
+   }
+   .accordion_title .active{
+    color: red;
+   }
+   .form-control[readonly]{
+    background-color: #ffffff;
+   }
+   .form_dmy {
+    background: #f1f1f1;
+    float: left;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px dashed red;
 }

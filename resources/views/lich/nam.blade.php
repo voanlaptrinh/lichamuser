@@ -48,11 +48,11 @@
 
         <div class="">
             @for ($i = 1; $i <= 12; $i++)
-                <div class="row">
+            <div class="row">
                     <div class="col-md-12">
                         <div class="vncal-header">
                             <div class="vncal-header-titles">
-                                <a href="#" title="Xem lịch âm tháng {{ $i }} năm {{ $nam }}">
+                                <a href="{{route('lich.thang', ['nam' => $nam, 'thang' => $i])}}" title="Xem lịch âm tháng {{ $i }} năm {{ $nam }}">
                                     <h4>THÁNG {{ $i }} NĂM {{ $nam }}</h4>
                                 </a>
                             </div>

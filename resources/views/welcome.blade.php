@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chuyển Đổi Ngày Dương Sang Âm</title>
+       <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Các link CSS nếu cần, ví dụ: Bootstrap hoặc custom CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css"> {{-- hoặc dark, material_red --}}
@@ -300,89 +301,89 @@
                 ]
             });
 
-            const duongInput = document.getElementById('duong_date');
-            const amInput = document.getElementById('am_date');
-            const cdateInput = document.getElementById('cdate'); // Input ẩn để submit
-            const form = document.getElementById('convertForm');
-            // Lấy CSRF token từ form, an toàn hơn
-            // const csrf = form.querySelector('input[name="_token"]').value;
+            // const duongInput = document.getElementById('duong_date');
+            // const amInput = document.getElementById('am_date');
+            // const cdateInput = document.getElementById('cdate'); // Input ẩn để submit
+            // const form = document.getElementById('convertForm');
+            // // Lấy CSRF token từ form, an toàn hơn
+            // // const csrf = form.querySelector('input[name="_token"]').value;
 
-            // Hàm helper để tránh lặp code
-            async function updateDate(sourceElement, targetElement, apiUrl) {
-                const dateValue = sourceElement.value;
+            // // Hàm helper để tránh lặp code
+            // async function updateDate(sourceElement, targetElement, apiUrl) {
+            //     const dateValue = sourceElement.value;
 
-                // Nếu người dùng xóa ngày, thì cũng xóa ngày ở ô còn lại
-                if (!dateValue) {
-                    targetElement.value = '';
-                    // Nếu xóa ngày dương, xóa luôn cdate
-                    if (sourceElement.id === 'duong_date') {
-                        cdateInput.value = '';
-                    }
-                    return;
-                }
+            //     // Nếu người dùng xóa ngày, thì cũng xóa ngày ở ô còn lại
+            //     if (!dateValue) {
+            //         targetElement.value = '';
+            //         // Nếu xóa ngày dương, xóa luôn cdate
+            //         if (sourceElement.id === 'duong_date') {
+            //             cdateInput.value = '';
+            //         }
+            //         return;
+            //     }
 
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            date: dateValue
-                        })
-                    });
+            //     try {
+            //         const response = await fetch(apiUrl, {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json',
+            //                 'Accept': 'application/json',
+            //             },
+            //             body: JSON.stringify({
+            //                 date: dateValue
+            //             })
+            //         });
 
-                    if (!response.ok) {
-                        // Xử lý lỗi từ server, ví dụ hiển thị thông báo
-                        console.error('Lỗi server:', await response.text());
-                        return;
-                    }
+            //         if (!response.ok) {
+            //             // Xử lý lỗi từ server, ví dụ hiển thị thông báo
+            //             console.error('Lỗi server:', await response.text());
+            //             return;
+            //         }
 
-                    const data = await response.json();
+            //         const data = await response.json();
 
-                    if (data.date) {
-                        targetElement.value = data.date;
+            //         if (data.date) {
+            //             targetElement.value = data.date;
 
-                        // Luôn cập nhật input ẩn `cdate` với giá trị DƯƠNG LỊCH
-                        if (sourceElement.id === 'duong_date') {
-                            cdateInput.value = sourceElement.value; // Là chính nó
-                        } else { // Nếu nguồn là ngày âm, thì `cdate` là kết quả chuyển đổi
-                            cdateInput.value = data.date;
-                        }
-                    } else if (data.error) {
-                        console.error('Lỗi chuyển đổi:', data.error);
-                    }
-                } catch (error) {
-                    console.error('Lỗi fetch:', error);
-                }
-            }
+            //             // Luôn cập nhật input ẩn `cdate` với giá trị DƯƠNG LỊCH
+            //             if (sourceElement.id === 'duong_date') {
+            //                 cdateInput.value = sourceElement.value; // Là chính nó
+            //             } else { // Nếu nguồn là ngày âm, thì `cdate` là kết quả chuyển đổi
+            //                 cdateInput.value = data.date;
+            //             }
+            //         } else if (data.error) {
+            //             console.error('Lỗi chuyển đổi:', data.error);
+            //         }
+            //     } catch (error) {
+            //         console.error('Lỗi fetch:', error);
+            //     }
+            // }
 
-            // Sự kiện đổi ngày dương → âm
-            if (duongInput) {
-                duongInput.addEventListener('change', () => {
-                    // Sử dụng route() của Laravel để lấy URL an toàn
-                    updateDate(duongInput, amInput, "{{ route('api.to.am') }}");
-                });
-            }
+            // // Sự kiện đổi ngày dương → âm
+            // if (duongInput) {
+            //     duongInput.addEventListener('change', () => {
+            //         // Sử dụng route() của Laravel để lấy URL an toàn
+            //         updateDate(duongInput, amInput, "{{ route('api.to.am') }}");
+            //     });
+            // }
 
-            // Sự kiện đổi ngày âm → dương
-            if (amInput) {
-                amInput.addEventListener('change', () => {
-                    updateDate(amInput, duongInput, "{{ route('api.to.duong') }}");
-                });
-            }
+            // // Sự kiện đổi ngày âm → dương
+            // if (amInput) {
+            //     amInput.addEventListener('change', () => {
+            //         updateDate(amInput, duongInput, "{{ route('api.to.duong') }}");
+            //     });
+            // }
 
-            // Kiểm tra trước khi submit form
-            if (form) {
-                form.addEventListener('submit', (e) => {
-                    // Chỉ cần kiểm tra `cdate` vì nó luôn là ngày dương cuối cùng
-                    if (!cdateInput.value) {
-                        e.preventDefault(); // Ngăn form submit
-                        alert("Vui lòng chọn ngày để xem chi tiết.");
-                    }
-                });
-            }
+            // // Kiểm tra trước khi submit form
+            // if (form) {
+            //     form.addEventListener('submit', (e) => {
+            //         // Chỉ cần kiểm tra `cdate` vì nó luôn là ngày dương cuối cùng
+            //         if (!cdateInput.value) {
+            //             e.preventDefault(); // Ngăn form submit
+            //             alert("Vui lòng chọn ngày để xem chi tiết.");
+            //         }
+            //     });
+            // }
         });
     </script>
 

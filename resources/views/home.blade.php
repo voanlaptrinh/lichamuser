@@ -319,13 +319,13 @@
                                         <table class="table table-bordered table-actent">
                                             <tbody>
                                                 <tr>
-                                                    <td><b>1. Vận khí và tuổi hợp/xung trong ngày</b></td>
+                                                    <td><b> Vận khí và tuổi hợp/xung trong ngày</b></td>
                                                     <td>
                                                         {{ $noiKhiNgay }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>2. Nhị thập bát tú</b></td>
+                                                    <td><b>Nhị thập bát tú</b></td>
                                                     <td>
                                                         <p>- Ngày
                                                             {{ $al[0] }}-{{ $al[1] }}-{{ $al[2] }}
@@ -349,7 +349,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>3. Thập nhị trực (12 trực)</b></td>
+                                                    <td><b>Thập nhị trực (12 trực)</b></td>
                                                     <td>
                                                         <p><b>Trực ngày: </b>Trực <b>{{ $getThongTinTruc['title'] }}</b>
                                                         </p>
@@ -368,7 +368,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>4. Ngọc hạp thông thư</b></td>
+                                                    <td><b>Ngọc hạp thông thư</b></td>
                                                     <td>
                                                         <div class="h6 text-decoration-underline">Sao tốt:</div>
                                                         @if (!empty($getSaoTotXauInfo['sao_tot']))
@@ -397,7 +397,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>5. Khổng minh lục diệu</b></td>
+                                                    <td><b> Khổng minh lục diệu</b></td>
                                                     <td>
                                                         <p>Ngày này là ngày <b>{{ $khongMinhLucDieu['name'] }}</b>
                                                             ({{ $khongMinhLucDieu['rating'] }})</p>
@@ -406,7 +406,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>6. Bành Tổ Bách Kỵ</b></td>
+                                                    <td><b> Bành Tổ Bách Kỵ</b></td>
                                                     <td>
                                                         Ngày <b>{{ $canChi }}</b>
                                                         <ul>
