@@ -4650,7 +4650,7 @@ class DataHelper
             'description' =>
             'Ngày này là ngày Đại cát (Rất tốt). Thích hợp cho việc xuất hành, cầu tài, cầu an, cưới hỏi, khai trương. Mọi việc hanh thông, ổn định, dễ thành.',
             'poem' =>
-            'Đại An chi nhật vạn sự hanh,</br> Xuất hành cầu phúc lưỡng tương thành.',
+            'Đại An chi nhật vạn sự hanh</br> Xuất hành cầu phúc lưỡng tương thành.',
             'icon' => '🌟' // Ví dụ icon
         ],
         'Lưu Niên' => [
@@ -4658,14 +4658,14 @@ class DataHelper
             'description' =>
             'Ngày dễ gặp sự trì hoãn, công việc kéo dài, kết quả đến chậm. Không nên bắt đầu việc lớn, thích hợp cho quan sát, chuẩn bị.',
             'poem' =>
-            'Lưu Niên chi nhật bất khả mưu,</br> Việc gì khởi động cũng công phu.',
+            'Lưu Niên chi nhật bất khả mưu</br> Việc gì khởi động cũng công phu.',
             'icon' => '⏳' // Ví dụ icon
         ],
         'Tốc Hỷ' => [
             'rating' => 'Tốt',
             'description' =>
             'Ngày có sinh khí vui mừng, dễ nhận tin tốt, cầu duyên, khai trương nhẹ, gặp quý nhân. Tốt cho việc nhanh, không nên kéo dài.',
-            'poem' => 'Tốc Hỷ chi thời phúc lộc lai,</br> Cưới xin, cầu tài, hỷ sự khai.',
+            'poem' => 'Tốc Hỷ chi thời phúc lộc lai</br> Cưới xin, cầu tài, hỷ sự khai.',
             'icon' => '🎉' // Ví dụ icon
         ],
         'Xích Khẩu' => [
@@ -4673,7 +4673,7 @@ class DataHelper
             'description' =>
             'Ngày dễ xảy ra tranh cãi, thị phi, kiện tụng. Không nên họp hành, gặp gỡ, ký kết. Xuất hành dễ gặp khẩu thiệt, bất hòa.',
             'poem' =>
-            'Xích Khẩu bất khả xuất môn hành,</br> Khẩu thiệt thị phi dễ nhập danh.',
+            'Xích Khẩu bất khả xuất môn hành</br> Khẩu thiệt thị phi dễ nhập danh.',
             'icon' => '🗣️' // Ví dụ icon
         ],
         'Tiểu Cát' => [
@@ -4681,15 +4681,15 @@ class DataHelper
             'description' =>
             'Ngày có may mắn nhẹ, làm việc nhỏ ổn định. Phù hợp đi gần, giao tiếp, mở hàng thử vận. Không nên toan tính việc lớn.',
             'poem' =>
-            'Tiểu Cát chi thời tiểu sự hanh,</br> Đại sự bất thành, tiểu lợi sanh.',
+            'Tiểu Cát chi thời tiểu sự hanh</br> Đại sự bất thành, tiểu lợi sanh.',
             'icon' => '👍' // Ví dụ icon
         ],
         'Không Vong' => [
-            'rating' => 'Rất xấu',
+            'rating' => 'Xấu',
             'description' =>
-            'Ngày rất xấu, dễ mất mát, hao tổn, mọi việc không thành. Không nên xuất hành, cầu tài, ký kết hay khởi sự.',
+            'Ngày xấu, dễ mất mát, hao tổn, mọi việc không thành. Không nên xuất hành, cầu tài, ký kết hay khởi sự.',
             'poem' =>
-            'Không Vong chi nhật vạn sự suy,</br> Hành sự bất thành, vận khó quy.',
+            'Không Vong chi nhật vạn sự suy</br> Hành sự bất thành, vận khó quy.',
             'icon' => '💀' // Ví dụ icon
         ],
     ];
@@ -5084,18 +5084,18 @@ class DataHelper
         ],
     ];
     public static array $chiIcons = [
-        'Tý' => '🐀',
-        'Sửu' => '🐂',
-        'Dần' => '🐅',
-        'Mão' => '🐈',
-        'Thìn' => '🐉',
-        'Tỵ' => '🐍',
-        'Ngọ' => '🐎',
-        'Mùi' => '🐐',
-        'Thân' => '🐒',
-        'Dậu' => '🐓',
-        'Tuất' => '🐕',
-        'Hợi' => '🐖',
+        'Tý' => 'ty.png',
+        'Sửu' => 'suu.png',
+        'Dần' => 'dan.png',
+        'Mão' => 'mao.png',
+        'Thìn' => 'thin.png',
+        'Tỵ' => 'ty_.png',
+        'Ngọ' => 'ngo.png',
+        'Mùi' => 'mui.png',
+        'Thân' => 'than.png',
+        'Dậu' => 'dau.png',
+        'Tuất' => 'tuat.png',
+        'Hợi' => 'hoi.png',
     ];
     public static array $chiColors = [
         // Các màu được chọn đậm hơn/bão hòa hơn để nổi bật trên nền F8E3BA (vàng be)

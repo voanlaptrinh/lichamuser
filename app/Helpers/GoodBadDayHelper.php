@@ -464,7 +464,7 @@ class GoodBadDayHelper
         } elseif ($percentage <= 39) {
             $introText = "Ngày $dateStr là một ngày Xấu $withUser. Không thích hợp để thực hiện các công việc quan trọng. Bạn nên trì hoãn những kế hoạch lớn, chỉ nên giải quyết các việc nhỏ mang tính duy trì. Nếu không thể trì hoãn, hãy cân nhắc chọn giờ tốt và hóa giải ảnh hưởng từ các yếu tố hung tinh.";
         } elseif ($percentage <= 59) {
-            $introText = "Ngày $dateStr là một ngày Trung bình $withUser. Có thể thực hiện những công việc nhỏ, lặp lại, hoặc mang tính hỗ trợ. Nếu muốn triển khai việc lớn, hãy đảm bảo xem xét kỹ lưỡng các yếu tố phụ trợ như sao tốt/xấu, ngày kỵ, tuổi xung, trực ngày… để đảm bảo thuận lợi.";
+            $introText = "Ngày $dateStr là một ngày <b>Trung bình</b> $withUser. Có thể thực hiện những công việc nhỏ, lặp lại, hoặc mang tính hỗ trợ. Nếu muốn triển khai việc lớn, hãy đảm bảo xem xét kỹ lưỡng các yếu tố phụ trợ như sao tốt/xấu, ngày kỵ, tuổi xung, trực ngày… để đảm bảo thuận lợi.";
         } elseif ($percentage <= 79) {
             $introText = "Ngày $dateStr là một ngày Tốt $withUser. Thích hợp để triển khai các công việc quan trọng như ký kết, đi xa, làm lễ, khai trương, động thổ… Tuy nhiên, để đạt kết quả tốt nhất, bạn vẫn nên xem lại các yếu tố như ngày kỵ, tuổi xung, sao đại hung, hoặc vận khí ngày/tháng so với tuổi của bạn.";
         } else {

@@ -422,7 +422,10 @@ class LunarHelper
         // Các sự kiện cố định theo ngày âm
         return [
             '1-1' => 'Tết Nguyên Đán',
+            '1-5' => 'Hội Đền Đống Đa',
             '1-15' => 'Rằm tháng Giêng',
+            '1-6' => 'Khai hội Chùa Hương',
+            '1-13' => ' Hội Lim',
             '3-3' => 'Tết Hàn Thực.',
             '3-10' => 'Giỗ tổ Hùng Vương',
             '4-8' => 'Lễ Phật Đản',
@@ -519,6 +522,19 @@ class LunarHelper
         }
 
         return implode(', ', $data_gio_hd);
+    }
+    static function gioHDTrongNgayTXTData($chi_ngay, $type = 'mini')
+    {
+        $chi_ngay = mb_strtolower($chi_ngay);
+        $data_gio_hd = array();
+        foreach (self::gioHoangDaoByNgay($chi_ngay) as $chi_gio) {
+            if ($type == 'mini')
+                $data_gio_hd[] = DataHelper::$khungGioMini[$chi_gio];
+            else
+                $data_gio_hd[] = DataHelper::$khungGio[$chi_gio];
+        }
+
+        return $data_gio_hd;
     }
 
     static function canchiNgayByJD($jd)
@@ -984,7 +1000,7 @@ class LunarHelper
 
         $html = '<ul>';
         foreach ($allEvents as $date => $title) {
-            $html .= "<li>$date: $title</li>";
+            $html .= "<li style='background:#e7e7e7; margin-bottom:2px;padding-top:10px;padding-bottom:10px;padding-left: 8px;'>$date: $title</li>";
         }
         $html .= '</ul>';
         return $html;
@@ -1009,7 +1025,7 @@ class LunarHelper
         foreach ($events as $md => $title) {
             list($mm, $dd) = explode('-', $md);
             $dateDisplay = $dd . '/' . $mm; // in ra dd/mm âm lịch
-            $html .= "<li>$dateDisplay (Âm lịch): $title</li>";
+            $html .= "<li style='background:#e7e7e7; margin-bottom:2px;padding-top:10px;padding-bottom:10px;padding-left: 8px;'>$dateDisplay (Âm lịch): $title</li>";
         }
         $html .= '</ul>';
 

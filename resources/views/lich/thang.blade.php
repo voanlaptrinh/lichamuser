@@ -1,9 +1,34 @@
 @extends('welcome')
 @section('content')
-    <div class="container">
-        <h2>Lịch âm tháng {{ $mm }} năm {{ $yy }}</h2>
-        <h5>Tháng {{ $can_chi_thang }}</h5>
-        <p>{{ $desrtipton_thang }}</p>
+    <div class="">
+        <h1 class="p-title">Xem ngày tốt xấu tháng {{ $mm }} năm {{ $yy }}</h1>
+
+        {{-- <h5>Tháng {{ $can_chi_thang }}</h5> --}}
+        <div class="h5">
+            {{ $desrtipton_thang['name'] }} <br>
+
+            {{-- {{$desrtipton_thang[]}} --}}
+        </div>
+        <p style="font-size: 18px">
+            - {{ $desrtipton_thang['weather'] }} <br>
+            - {{ $desrtipton_thang['symbolism'] }}
+        </p>
+        <ol class="breadcrumb">
+            <li itemprop="itemListElement"><a itemprop="item" href="/"> <span itemprop="name">Lịch âm</span> </a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement"><a itemprop="item" class="text-danger"> <span itemprop="name">Năm
+                        {{ $yy }}</span> </a>
+                <meta itemprop="position" content="2">
+            </li>
+            <li itemprop="itemListElement"><a itemprop="item" class="text-danger"> <span itemprop="name">Tháng
+                        {{ $mm }}</span> </a>
+                <meta itemprop="position" content="3">
+            </li>
+        </ol>
+        <div class="hd-day pb-3"><span class="dh-gr"> <span class="dh-tot">●</span> <span>Ngày Hoàng Đạo</span> </span>
+            <span class="dh-gr"> <span class="dh-xau">●</span> <span>Ngày Hắc Đạo</span> </span>
+        </div>
         <table class="calendar-table">
             <thead>
                 <tr>
@@ -22,57 +47,48 @@
             </tbody>
         </table>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <h5>Ngày tốt tháng </h5>
-                <div class="row g-1">
-                    @foreach ($data_totxau['tot'] as $data_tot)
-                        <div class="col-lg-12">
-                            <div class="card">
+        <div>
+            <h2 class="p-title">Ngày tốt trong tháng {{ $mm }} năm {{ $yy }}</h2>
+            <div class="row g-2 d-flex justify-content-center">
+                @foreach ($data_totxau['tot'] as $data_tot)
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <a href="{{ route('lich.nam.ngay', ['nam' => $data_tot['yy'], 'thang' => $data_tot['mm'], 'ngay' => $data_tot['dd']]) }}"
+                                class="ngay-item-lich-nam-thang">
                                 <div class="card-body text-center">
-                                    <a href="{{route('lich.nam.ngay', ['nam' => $data_tot['yy'], 'thang' => $data_tot['mm'], 'ngay' => $data_tot['dd']])}}">
+
                                     Ngày {{ $data_tot['dd'] }} Tháng {{ $data_tot['mm'] }} Năm {{ $data_tot['yy'] }}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
 
-            </div>
-            <div class="col-lg-6">
-                <h5>Ngày Xấu tháng </h5>
-                <div class="row g-1">
-                    @foreach ($data_totxau['xau'] as $data_xau)
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                  <a href="{{route('lich.nam.ngay', ['nam' => $data_xau['yy'], 'thang' => $data_xau['mm'], 'ngay' => $data_xau['dd']])}}">
-                                      Ngày {{ $data_xau['dd'] }} Tháng {{ $data_xau['mm'] }} Năm {{ $data_xau['yy'] }}
-                                  </a>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-            </div>
-        </div>
-        <div class="row g-3">
-            <h5 class="pt-3 pb-1">Ngày Xấu tháng </h5>
-            @foreach ($le_lichs as $le_lich)
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body text-start">
-                            {{ $le_lich['dd'] }}-{{ $le_lich['mm'] }}: {{ $le_lich['name'] }}
+                            </a>
                         </div>
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         </div>
-        <div class="row g-3">
-            <h5 class="pt-3 pb-1">Ngày Xấu tháng </h5>
+        <div>
+            <h2 class="p-title">Ngày xấu trong tháng {{ $mm }} năm {{ $yy }}</h2>
+            <div class="row g-2 d-flex justify-content-center">
+                @foreach ($data_totxau['xau'] as $data_xau)
+                    <div class="col-lg-6">
+
+                        <div class="card">
+                            <a href="{{ route('lich.nam.ngay', ['nam' => $data_xau['yy'], 'thang' => $data_xau['mm'], 'ngay' => $data_xau['dd']]) }}"
+                                class="ngay-item-lich-nam-thang">
+                                <div class="card-body text-center">
+
+                                    Ngày {{ $data_xau['dd'] }} Tháng {{ $data_xau['mm'] }} Năm {{ $data_xau['yy'] }}
+
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="row g-2 pt-2">
+            <h2 class="p-title">Ngày lễ trong tháng {{ $mm }} năm {{ $yy }}</h2>
             @foreach ($su_kiens as $su_kien)
                 <div class="col-lg-12">
                     <div class="card">
@@ -84,10 +100,33 @@
             @endforeach
 
         </div>
-        <h5 class="pt-3 pb-1">Ngày xuất hành âm lịch</h5>
-        <div class="row g-2">
+          <style>
+            .active {
+                background: pink
+            }
+        </style>
+        <div>
+          <h2 class="p-title">Lịch âm các tháng năm {{ $yy }}</h2>
+            <div class="row g-2">
+                @for ($i = 1; $i <= 12; $i++)
+                    <div class="col-lg-6">
+                        <a href="{{ route('lich.thang', ['nam' => $yy, 'thang' => $i]) }}" class="">
+                            <div class="card {{ $mm == $i ? 'active' : '' }}">
+                                <div class="card-body text-center">
+                                    Lịch âm tháng {{ $i }} năm {{ $yy }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endfor
+            </div>
+
+        </div>
+        <h2 class="p-title">Ngày xuất hành âm lịch tốt trong tháng {{ $mm }} năm {{ $yy }}</h2>
+
+        <div class="row g-1">
             @foreach ($data_al as $ngay)
-                <div class="col-lg-12 mb-2">
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
 
@@ -106,27 +145,6 @@
         </div>
 
 
-<style>
-    .active{
-        background: pink
-    }
-</style>
-        <div>
-            <h5 class="pt-3 pb-1">Xem lịch âm các tháng khác</h5>
-            <div class="row g-2">
-                @for ($i = 1; $i <= 12; $i++)
-                    <div class="col-lg-6">
-                        <a href="{{ route('lich.thang', ['nam' => $yy, 'thang' => $i]) }}" class="">
-                            <div class="card {{$mm == $i ? 'active' : ''}}">
-                                <div class="card-body text-center">
-                                    Lịch âm tháng {{ $i }} năm {{ $yy }}
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endfor
-            </div>
 
-        </div>
     </div>
 @endsection

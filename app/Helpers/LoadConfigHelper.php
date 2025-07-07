@@ -23,18 +23,66 @@ class LoadConfigHelper
     );
 
     static $mheaders = array(
-        1 => 'Tháng đầu tiên của năm, tháng mở đầu của mùa xuân. Loài hoa tượng trưng cho tháng 1 là hoa Cúc Trường Sinh. Ý nghĩa tháng 1 biểu tượng rằng bạn là người mạnh mẽ, có nghị lực vượt qua mọi khó khăn. Thời điểm của tháng 1 là bước giao mùa giữa mùa Đông và mùa Xuân. Tháng 1 là tháng in dấu với thời tiết mưa phùn, mưa xuân ẩm ướt kéo dãi đằng đẵng.',
-        2 => 'Tháng của những lễ hội, thế gian vui chơi, sự chuyển mình rõ rệt nhất của mùa xuân. Cây cối đâm chồi nảy lộc, người người vui vẻ chơi xuân. Thời tiết tháng 2 cũng dễ chịu nhất, không có cái nắng gay gắt của hè, cũng không có cái lạnh cắt da cắt thịt của mùa đông, trời bắt đầu có nắng và tiết trời chỉ se se lạnh. Loài hòa tượng trưng cho tháng 2 là hoa trinh nữ. Ý nghĩa của tháng 2 thể hiện con người mẫn cảm, bạn rất nhạy cảm trước những lời nói của người khác. Trong công việc bạn luôn tận tụy hết lòng hết sức.',
-        3 => 'Tháng kết thúc của mùa xuân, mọi người trở lại hăng say với công việc và cuộc sống hằng ngày. Với những bạn sinh vào tháng 3 thì loài hòa tượng trưng cho ý nghĩa của tháng 3 chính là hoa Bách Hợp. Thể hiến sự tinh tế, cũng như sức hấp dẫn kín đáo bí ẩn. Nhưng tính cách của người sinh vào tháng 3 cũng rất quyết liệt và khá độc đoán, quyết đoán.',
-        4 => 'Mang ý nghĩa giống như loài hoa Mộc Lan. Những người sinh tháng 4 thể hiện bạn là người tham vọng, luôn muốn thể hiện mình là người nổi bật, trong nhiều trường hợp bạn nên thể hiện sự khiêm tốn của mình. Ý nghĩa của tháng 4 là tháng đại diện cho những nguyện vọng lâu dài, những loài hoa tháng 4 thường gợi cảm giác ưu phiền, tựa nỗi buồn ngây thơ.',
-        5 => 'Được tượng trưng bởi loại hoa Lan Chuông một loại hoa cao quý. Hoa Lan Chuông thể hiện rằng bạn rất ngọt ngào và khá cầu toàn, tỉ mỉ. Ý nghĩa tháng 5 là cầu nối bước sang mùa hè, khi đất trời đã bắt đầu ngập tràn những ngày nắng. Đôi khi người sinh tháng 5 là kẻ cố chấp, nóng lòng hay đổi thay, rồi mọi chuyện cũng qua nhanh như những đêm ngắn ngủi của tháng 5.',
-        6 => '"Ai mang cho tháng 6 nỗi buồn Hoa Phượng, để mùa hè đến lòng ai chợt ngẩn ngơ", tháng 6 luôn có những cuộc chia tay lớn và đầy những trang lưu bút được viết lên trên những cuốn sổ ủ đầy cánh hoa. Người sinh tháng 6 trong lòng rất lãng mạn, giàu tình cảm và cả ưu phiền. Loài hoa tượng trưng cho tháng 6 là hoa tuy - lip, nhưng nhiều người cho rằng, tháng 6 là mùa của loài hoa phượng, nở đỏ rực sân trường. Tạo nên ý nghĩa của tháng 6 là mùa của chia tay và nước mắt, một tháng đong đầy với những kỷ niệm khó quên của biết bao người.',
-        7 => 'Loài hoa tượng trưng cho tháng 7 là hoa Phi Yến. Những bạn sinh vào tháng 7 thường là người hay mơ mộng, thích tượng tưởng, có khả năng suy xét vấn đề tốt. Bạn cách sống khá lạ mà nhiều người cho rằng lập dị. Ý nghĩa tháng 7 là điểm giữa của mùa hè, mặt trời lên cao và nắng chói chang trên mặt đất. Tháng 7 nước lên con lũ lớn, tháng 7 mưa rào không ngớt suốt ngày đêm. Bản tính người sinh tháng 7 cũng mạnh mẽ ngang tàn và cố chấp khi không ngăn kịp lúc.',
-        8 => 'Tháng của hoa hồng, chúa của các loài hoa. Vẻ đẹp của hoa hồng được tượng trưng cho tình yêu, cho sự mãnh liệt. Ý nghĩa của tháng 8 là khoảng chớm thu có những ngày nắng dịu mát mẻ rất tuyệt, tháng 8 mang đến miền Bắc hình hài của miền Nam. Tháng 8 cũng là tháng sinh ra những người đặc biệt.',
-        9 => 'Tháng mang ý nghĩa của hoa Cẩm Chướng. Thể hiện rằng bạn là con người bộc trực, hăng hái . Ý nghĩa của tháng 9 là tháng trở mình giữa mùa hạ và mua thu. Vẫn còn những ngày nắng gắt nhưng có chút man mát của mùa thu, của mùi hoa nở rộ. Tháng 9 ngập tràn những khám phá mới, những khởi đầu mới cho người ta nhiều cảm xúc.',
-        10 => 'Ý nghĩa tháng 10 cũng giống như ý nghĩa của loài hoa tượng trưng cho tháng đó, chính là hoa Hải Đường. Những người sinh tháng 10 thường có một tâm hồn tinh tế, nhưng cũng rất dũng cảm và gan dạ. Tính cách của người sinh tháng 10 luôn tươi trẻ và đầy nhiệt huyết. Tháng 10 là tháng để thêu dệt ước mơ, vun đắp dự định và thực hiện những cuộc cải cách lớn, tháng 10 không chỉ lãng mạn mà còn ẩn chứa vô vàn bí ẩn khiến người đối diện thu hút mãi không thể rời mắt.',
-        11 => 'Loài hoa tượng trưng cho ý nghĩa tháng 11 là hoa Lay Ơn. Những bạn sinh vào tháng 11 luôn có một vẻ bề ngoài hấp dấn người khác, bạn luôn bí ẩn và tinh tế, luôn thể hiện mình là người thông mình chịu khó. Tháng 11 cũng bắt đầu với cái rét đầu mùa, cái rét mong manh như tâm hồn luôn đi tìm 1 chỗ dựa. Mùa thu sẽ kết thúc trong tháng 11 với nhiều tiếc nuối ở lại để đón chào tháng 12 lạnh giá.',
-        12 => 'Hoa Thủy tiên là loài hoa tượng trưng cho ý nghĩa tháng 12, cho một tháng cuối năm nhẹ nhành mà thanh thoát. Những người sinh vào tháng 12 thường thân thiện cởi mở, họ thường gặp được nhưng điều may mắn trong cuộc sống. Ý nghĩa của tháng 12 còn là điểm giữa mùa đông, vào 1 ngày cuối tháng 12 lạnh giá và nhợt nhạt. Mọi vận động bị cái lạnh kìm hãm, có thứ chết đi và có thứ vẫn gắng gượng chống chọi.',
+        1 => [
+            'name' => 'Tháng 1: Tháng của Sự Khởi Đầu và Sức Sống Nội Tại',
+            'weather' => 'Tháng 1 là khúc dạo đầu của năm mới, khi đất trời vẫn còn ngái ngủ trong cái lạnh cuối đông nhưng đã âm thầm cựa mình thức giấc. Những cơn mưa phùn giăng mắc khắp không gian, không lạnh buốt mà như những sợi tơ trời ẩm ướt, gột rửa vạn vật, chuẩn bị cho một cuộc hồi sinh. Đây là thời gian của sự tĩnh lặng, khi năng lượng được tích tụ sâu trong lòng đất, chờ ngày bùng nổ.',
+            'symbolism' => 'Hoa Cúc Trường Sinh, loài hoa bất khuất trước sương giá, là biểu tượng hoàn hảo cho tháng 1. Nó tượng trưng cho sức mạnh nội tại, ý chí kiên cường và khả năng vượt qua mọi nghịch cảnh. Người sinh tháng 1 mang trong mình tinh thần của một người tiên phong, trầm tĩnh nhưng quyết liệt. Họ không ồn ào, nhưng bên trong là một nghị lực phi thường, luôn sẵn sàng đối mặt và kiến tạo nên con đường riêng của mình.',
+        ],
+        2 => [
+            'name' => 'Tháng 2: Tháng của Lễ Hội và Sự Giao Hòa',
+            'weather' => 'Tháng 2 là trái tim của mùa xuân. Không khí náo nức của lễ hội lan tỏa khắp nơi, từ làng quê đến thành thị. Cây cối không còn e dè mà đồng loạt đâm chồi, nảy lộc, khoe sắc. Tiết trời trở nên dịu dàng, ấm áp, cái lạnh chỉ còn se se như một lời tạm biệt của mùa đông. Nắng xuân vàng như mật, rót xuống trần gian, mời gọi vạn vật giao hòa.',
+            'symbolism' => 'Hoa Trinh Nữ (hoa Mắc Cỡ) tượng trưng cho người sinh tháng 2. Bề ngoài có vẻ e ấp, nhạy cảm, dễ rung động trước những va chạm nhỏ nhất của cuộc sống, nhưng bản chất bên trong lại vô cùng tận tụy và chân thành. Họ là những người có khả năng kết nối cảm xúc mạnh mẽ, là chất keo gắn kết các mối quan hệ, mang lại sự ấm áp và vui vẻ cho những người xung quanh, giống như không khí của mùa lễ hội.',
+        ],
+        3 => [
+            'name' => 'Tháng 3: Tháng của Sức Trẻ và Khát Vọng Bứt Phá',
+            'weather' => 'Là tháng cuối cùng của mùa xuân, tháng 3 mang trong mình nguồn năng lượng căng tràn nhất. Những cơn mưa rào bất chợt gột rửa đi những dấu vết cuối cùng của mùa cũ, nhường chỗ cho một sức sống mãnh liệt. Đây là thời điểm vạn vật phát triển mạnh mẽ nhất, là lúc con người trở lại với guồng quay công việc với một tinh thần hăng say, đầy nhiệt huyết sau những ngày du xuân.',
+            'symbolism' => 'Hoa Bách Hợp (hoa Loa Kèn) với vẻ đẹp tinh khôi nhưng kiêu hãnh, đại diện cho tháng 3. Người sinh tháng này sở hữu một sức hấp dẫn bí ẩn, một sự tinh tế trong tâm hồn nhưng cũng không thiếu phần quyết đoán, thậm chí là độc đoán khi cần thiết. Họ là những người có hoài bão, luôn muốn vươn lên và khẳng định giá trị bản thân, giống như những đóa loa kèn vươn mình kiêu hãnh dưới ánh nắng.',
+        ],
+        4 => [
+            'name' => 'Tháng 4: Tháng của Sự Chuyển Giao và Những Nỗi Niềm Sâu Lắng',
+            'weather' => 'Tháng 4 là cây cầu mỏng manh nối giữa mùa xuân và mùa hạ. Những cơn nắng đầu hè bắt đầu xuất hiện, chưa gay gắt nhưng đủ để hong khô những giọt mưa xuân còn sót lại. Không gian mang một vẻ đẹp dịu dàng, có chút man mác buồn của sự chia ly, như những cánh hoa loa kèn cuối mùa hay những đóa gạo rực lửa chỉ nở trong khoảnh khắc.',
+            'symbolism' => 'Hoa Mộc Lan, loài hoa nở sớm tàn nhanh, tượng trưng cho tháng 4. Nó gợi lên hình ảnh của những nguyện vọng lớn lao, những khát khao cháy bỏng nhưng đôi khi lại phảng phất một nỗi ưu phiền, tiếc nuối. Người sinh tháng 4 có tham vọng, muốn là trung tâm của sự chú ý, nhưng sâu thẳm trong họ là một tâm hồn nhạy cảm, dễ bị tổn thương. Họ cần học cách cân bằng giữa việc thể hiện bản thân và sự khiêm tốn để tìm thấy sự bình yên.',
+        ],
+        5 => [
+            'name' => 'Tháng 5: Tháng của Sự Tỏa Sáng Rực Rỡ',
+            'weather' => 'Tháng 5 chính thức mở ra cánh cửa mùa hè. Mặt trời ngự trị trên bầu trời, ban phát nguồn năng lượng dồi dào. Cây cối xanh mướt, sum suê, vạn vật đều ở trạng thái sung mãn nhất. Đêm trở nên ngắn hơn, nhường chỗ cho những ngày dài đầy nắng và gió. Đây là thời gian của sự trưởng thành và tỏa sáng.',
+            'symbolism' => 'Hoa Lan Chuông, với vẻ đẹp ngọt ngào, tinh khiết nhưng quý phái, là biểu tượng của tháng 5. Người sinh tháng này có xu hướng cầu toàn, tỉ mỉ và luôn muốn mọi thứ phải hoàn hảo. Họ có thể hơi cố chấp và nóng vội, nhưng sự nhiệt huyết và đam mê của họ có sức lan tỏa mạnh mẽ, giống như ánh nắng rực rỡ của tháng 5 có thể sưởi ấm vạn vật.',
+        ],
+        6 => [
+            'name' => 'Tháng 6: Tháng của Kỷ Niệm và Những Cung Bậc Cảm Xúc',
+            'weather' => 'Tháng 6 gắn liền với hình ảnh hoa phượng đỏ rực một góc trời và tiếng ve ran trong vòm lá. Đây là tháng của những cuộc chia tay tuổi học trò, của những trang lưu bút ướp đầy kỷ niệm. Nắng hè trở nên gay gắt hơn, và những cơn mưa rào bất chợt đến rồi đi, như những cảm xúc vui buồn lẫn lộn của thời khắc chia ly.',
+            'symbolism' => 'Dù hoa Tulip được nhắc đến, nhưng ở Việt Nam, Hoa Phượng mới là linh hồn của tháng 6. Nó tượng trưng cho sự nồng cháy của tuổi trẻ, cho những mối tình đầu trong sáng và cả những giọt nước mắt của sự nuối tiếc. Người sinh tháng 6 mang một tâm hồn lãng mạn, đa cảm và sâu sắc. Họ sống bằng tình cảm, trân trọng ký ức và luôn mang trong mình một nỗi ưu phiền man mác, đẹp như một bài thơ.',
+        ],
+        7 => [
+            'name' => 'Tháng 7: Tháng của Sự Dữ Dội và Sức Mạnh Đối Mặt',
+            'weather' => 'Tháng 7 là đỉnh điểm của mùa hè, nơi mặt trời và những cơn mưa đối đầu một cách dữ dội nhất. Nắng chói chang như thiêu như đốt, rồi đột ngột bị thay thế bởi những trận mưa rào xối xả, mang theo sấm chớp và những con lũ dâng đầy. Đây là tháng của sự tương phản cực độ, của sức mạnh thiên nhiên không thể khuất phục.',
+            'symbolism' => 'Hoa Phi Yến, với dáng vẻ kiêu sa và độc đáo, tượng trưng cho người sinh tháng 7. Họ là những tâm hồn mơ mộng nhưng cũng rất mạnh mẽ và ngang tàn. Họ có khả năng suy xét sâu sắc, thường có những ý tưởng khác biệt mà người khác cho là lập dị. Giống như thời tiết tháng 7, tính cách của họ có thể thay đổi đột ngột, mãnh liệt và cố chấp, nhưng đó cũng chính là sức mạnh giúp họ đứng vững trước những giông bão của cuộc đời.',
+        ],
+        8 => [
+            'name' => 'Tháng 8: Tháng của Sự Dịu Dàng Chớm Thu',
+            'weather' => 'Tháng 8 là bản giao hưởng êm dịu giữa mùa hạ và mùa thu. Cái nắng gay gắt đã lùi bước, nhường chỗ cho những ngày dịu mát, gió heo may bắt đầu thổi về mang theo hương ổi, hương cốm. Bầu trời như cao và trong xanh hơn. Miền Bắc lúc này mang một chút dáng dấp của thời tiết ôn hòa miền Nam, một sự giao thoa ngọt ngào và lãng mạn.',
+            'symbolism' => 'Hoa Hồng, nữ hoàng của các loài hoa, là biểu tượng của tháng 8. Nó không chỉ tượng trưng cho tình yêu mãnh liệt mà còn là vẻ đẹp của sự trưởng thành, đằm thắm. Người sinh tháng 8 thường có sức hấp dẫn đặc biệt, vừa nồng nàn, quyến rũ, vừa tinh tế, sâu sắc. Họ là những người biết cân bằng giữa lý trí và tình cảm, mang lại cảm giác bình yên và tin cậy cho người đối diện.',
+        ],
+        9 => [
+            'name' => 'Tháng 9: Tháng của Sự Khởi Đầu Mới và Hy Vọng',
+            'weather' => 'Tháng 9 là mùa tựu trường, là mùa của những khởi đầu mới. Mùa thu đã hiện diện rõ rệt hơn qua những chiếc lá vàng rơi và không khí se lạnh vào buổi sớm. Nắng không còn gắt, chỉ đủ để làm vàng óng những cánh đồng lúa đang chờ gặt. Đây là tháng của hy vọng, của những kế hoạch và dự định mới được ươm mầm.',
+            'symbolism' => 'Hoa Cẩm Chướng, loài hoa của sự bộc trực và lòng hăng hái, đại diện cho tháng 9. Người sinh tháng này thường thẳng thắn, nhiệt tình và tràn đầy năng lượng. Họ không ngại thử thách, luôn sẵn sàng cho những khám phá mới. Tâm hồn họ giống như mùa thu, vừa lãng mạn, sâu lắng nhưng cũng đầy ắp những khát khao và đam mê được cống hiến.',
+        ],
+        10 => [
+            'name' => 'Tháng 10: Tháng của Vẻ Đẹp Lãng Mạn và Sâu Lắng',
+            'weather' => 'Tháng 10 là tháng mùa thu đẹp và lãng mạn nhất. Hà Nội nồng nàn mùi hoa sữa, không khí trong lành và se lạnh. Đây là thời gian lý tưởng để đi dạo dưới những hàng cây lá vàng, để suy ngẫm và chiêm nghiệm. Vẻ đẹp của tháng 10 không phô trương mà sâu lắng, khiến lòng người tĩnh lại và trở nên tinh tế hơn.',
+            'symbolism' => 'Hoa Hải Đường, loài hoa của sự tinh tế, dũng cảm và may mắn, là biểu tượng của tháng 10. Người sinh tháng này có một tâm hồn nghệ sĩ, một trái tim nồng hậu và một ý chí mạnh mẽ. Họ có khả năng nhìn thấy vẻ đẹp trong những điều bình dị nhất. Tháng 10 không chỉ là tháng của sự lãng mạn mà còn ẩn chứa một sức mạnh nội tâm, thôi thúc người ta thực hiện những cải cách lớn lao từ chính những điều nhỏ bé.',
+        ],
+        11 => [
+            'name' => 'Tháng 11: Tháng của Sự Lắng Đọng và Trầm Tư',
+            'weather' => 'Tháng 11 mang đến những cơn gió mùa đông bắc đầu tiên, cái rét không cắt da cắt thịt mà chỉ đủ để người ta cảm nhận được sự chuyển mùa rõ rệt. Mùa thu lưu luyến ở lại trong những ngày nắng hanh hao cuối cùng trước khi nhường chỗ hoàn toàn cho mùa đông. Đây là thời gian của sự lắng đọng, khi vạn vật bắt đầu thu mình lại, chuẩn bị cho một kỳ nghỉ dài.',
+            'symbolism' => 'Hoa Lay Ơn, với vẻ đẹp thanh lịch và bí ẩn, tượng trưng cho tháng 11. Người sinh tháng này thường có vẻ ngoài hấp dẫn, một tâm hồn sâu sắc và một trí tuệ sắc sảo. Họ thông minh, chịu khó và luôn đi tìm một chỗ dựa tinh thần vững chắc, giống như không khí mong manh của tháng 11 khiến người ta muốn tìm về một nơi ấm áp.',
+        ],
+        12 => [
+            'name' => 'Tháng 12: Tháng của Sự Kết Thúc và Chiêm Nghiệm',
+            'weather' => 'Tháng 12 là tháng cuối cùng của năm, là điểm giữa của mùa đông lạnh giá. Thời tiết khô và lạnh, cây cối trơ trọi, dường như mọi vận động đều chậm lại. Không gian tĩnh lặng, nhợt nhạt, nhưng chính trong sự tĩnh lặng đó, người ta lại có thời gian để nhìn lại một năm đã qua, để chiêm nghiệm, tổng kết và chuẩn bị cho một vòng quay mới.',
+            'symbolism' => 'Hoa Thủy Tiên, loài hoa có thể nở trong giá lạnh, mang vẻ đẹp thanh thoát và tinh khôi, là biểu tượng của tháng 12. Nó tượng trưng cho sự tái sinh và hy vọng ngay trong hoàn cảnh khắc nghiệt nhất. Người sinh tháng 12 thường thân thiện, cởi mở và mang trong mình một sự lạc quan đáng ngạc nhiên. Họ là những người kết thúc một chu kỳ cũ để mở ra một chu kỳ mới, mang lại niềm tin và may mắn cho mọi người xung quanh.',
+        ],
     );
 
     static $ledl = array(
@@ -116,7 +164,7 @@ class LoadConfigHelper
         array(
             'dd' => 11,
             'mm' => 7,
-            'name' => 'Ngày dân số thế giới.'//
+            'name' => 'Ngày dân số thế giới.' //
         ),
         array(
             'dd' => 27,

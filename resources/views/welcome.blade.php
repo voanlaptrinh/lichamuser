@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css"> {{-- hoặc dark, material_red --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('/css/styledemo.css') }}">
+    @stack('stylehome')
 </head>
 
 <body>
@@ -18,7 +19,8 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="{{ route('home') }}" class="nav-link active" aria-current="page">Trang
                         chủ</a></li>
-                <li class="nav-item"><a href="{{ route('horoscope.index') }}" class="nav-link text-dark" aria-current="page">Cung
+                <li class="nav-item"><a href="{{ route('horoscope.index') }}" class="nav-link text-dark"
+                        aria-current="page">Cung
                         hoàng đạo</a></li>
                 <li>
                     <div class="dropdown">
@@ -62,19 +64,21 @@
                     </div>
 
                 </li>
-                <li class="nav-item"><a href="{{ route('van-khan.index') }}" class="nav-link text-dark" aria-current="page">Văn
+                <li class="nav-item"><a href="{{ route('van-khan.index') }}" class="nav-link text-dark"
+                        aria-current="page">Văn
                         khấn</a></li>
-                <li class="nav-item"><a href="{{ route('thuoc-lo-ban.index') }}" class="nav-link text-dark" aria-current="page">Thước lỗ ban</a></li>
+                <li class="nav-item"><a href="{{ route('thuoc-lo-ban.index') }}" class="nav-link text-dark"
+                        aria-current="page">Thước lỗ ban</a></li>
             </ul>
         </header>
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
+        <div class="row pt-3">
+            <div class="col-lg-12">
                 @yield('content')
             </div>
-            <div class="col-lg-3">
+            {{-- <div class="col-lg-3">
                 <ul class="">
 
                     <li class="nav-item"><a href="{{ route('astrology.form') }}" class="nav-link">Xem tuổi cưới hỏi</a>
@@ -140,7 +144,7 @@
                             làm việc</a> </li>
                     <li class="nav-item"><a href="{{ route('xem-ngay-cua-con.index') }}" class="nav-link">Xem giờ sinh của con</a> </li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -154,13 +158,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-
-
-
-
-
-
-
             const maxDate = new Date(new Date().getFullYear(), 11, 31); // 31/12 năm nay
             function rangeShortcutPlugin() {
                 // Danh sách các nút chọn nhanh
@@ -237,6 +234,12 @@
                 maxDate: maxDate,
                 locale: "vn",
 
+            });
+            flatpickr(".datehomecdate", {
+                altInput: true,
+                altFormat: "d/m/Y", // 👈 Hiển thị cho người dùng (ngày/tháng/năm)
+                dateFormat: "Y-m-d", // 👈 Gửi giá trị thực cho server (năm-tháng-ngày)
+                defaultDate: "{{ old('cdate', $cdate ?? '') }}"
             });
             flatpickr(".datehome", {
                 altFormat: "d/m/Y", // Định dạng cho người dùng xem
