@@ -165,7 +165,7 @@
                                                 @else
                                                     <div class="d-flex justify-content-between">
                                                         <div>
-                                                            <h5 class="mb-3">Bảng điểm chi tiết các ngày</h4>
+                                                            <h5 class="mb-3 title-date-chitite-tot">Bảng điểm chi tiết các ngày</h4>
                                                         </div>
 
                                                         <!-- START: Thêm Dropdown sắp xếp -->
@@ -197,7 +197,7 @@
 
                                                     <div class="table-responsive">
                                                         <table
-                                                            class="table table-bordered table-hover text-center align-middle">
+                                                            class="table table-bordered table-hover text-center align-middle tabl-repont">
                                                             <thead class="table-light">
                                                                 <tr>
                                                                     <th rowspan="2" class="align-middle">Ngày Dương</th>
@@ -237,13 +237,13 @@
                                                                         </td>
                                                                         {{-- Chú rể --}}
                                                                         <td>
-                                                                            <div class="fw-bold fs-5">
+                                                                            <div class="fw-bold ">
                                                                                 {{ $day['groom_score']['percentage'] }}
                                                                             </div>
                                                                         </td>
                                                                         {{-- Cô dâu --}}
                                                                         <td>
-                                                                            <div class="fw-bold fs-5">
+                                                                            <div class="fw-bold">
                                                                                 {{ $day['bride_score']['percentage'] }}
                                                                             </div>
                                                                         </td>

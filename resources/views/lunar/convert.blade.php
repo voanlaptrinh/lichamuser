@@ -66,7 +66,7 @@
                         <div class="col-lg-5">
                             <div class="form-group">
                                 {{-- THAY ĐỔI: "for" trỏ vào input date gốc để tăng độ nhạy khi click label --}}
-                                <label for="duong_date_native" class="form-label">Chọn Ngày Dương</label>
+                                <div for="duong_date_native" class=" txt-native">Chọn Ngày Dương <span class="text-danger">*</span></div>
                                 {{-- THAY ĐỔI: Thêm ID cho div wrapper để bắt sự kiện click --}}
                                 <div class="date-picker-wrapper" id="duong_date_wrapper">
                                     <input type="text" id="duong_date_display" class="form-control custom-date-display"
@@ -80,7 +80,7 @@
                         <div class="col-lg-5">
                             <div class="form-group">
                                 {{-- THAY ĐỔI: "for" trỏ vào input date gốc --}}
-                                <label for="am_date_native" class="form-label">Hoặc chọn Ngày Âm</label>
+                                <div for="am_date_native" class="  txt-native">Hoặc chọn Ngày Âm <span class="text-danger">*</span></div>
                                 {{-- THAY ĐỔI: Thêm ID cho div wrapper --}}
                                 <div class="date-picker-wrapper" id="am_date_wrapper">
                                     <input type="text" id="am_date_display" class="form-control custom-date-display"

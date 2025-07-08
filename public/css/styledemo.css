@@ -1310,20 +1310,120 @@
    .bg-wg2 {
        background: red
    }
-   .nav-link:focus, .nav-link:hover{
-    color: #dc1435;
+
+   .nav-link:focus,
+   .nav-link:hover {
+       color: #dc1435;
    }
-   .accordion_title .active{
-    color: red;
+
+   .accordion_title .active {
+       color: red;
    }
-   .form-control[readonly]{
-    background-color: #ffffff;
+
+   .form-control[readonly] {
+       background-color: #ffffff;
    }
+
    .form_dmy {
-    background: #f1f1f1;
-    float: left;
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px dashed red;
-}
+       background: #f1f1f1;
+       float: left;
+       width: 100%;
+       padding: 15px;
+       margin-bottom: 15px;
+       border: 1px dashed red;
+   }
+
+   /* Extra small devices (portrait phones, less than 576px) */
+   @media (max-width: 575.98px) {
+       .txt-native {
+           font-size: 13px;
+       }
+
+       .tabl-repont th {
+           font-size: 12px;
+       }
+        .tabl-repont tr {
+           font-size: 12px;
+       }
+       .title-date-chitite-tot{
+        font-size: 15px;
+       }
+   }
+
+   /* Small devices (landscape phones, 576px and up) */
+   @media (min-width: 576px) and (max-width: 767.98px) {
+       .txt-native {
+           font-size: 13px;
+       }
+
+       .tabl-repont th {
+           font-size: 12px;
+       }
+        .tabl-repont tr {
+           font-size: 12px;
+       }
+       .title-date-chitite-tot{
+        font-size: 15px;
+       }
+   }
+
+   /* Medium devices (tablets, 768px and up) */
+   @media (min-width: 768px) and (max-width: 991.98px) {
+       .txt-native {
+           font-size: 13px;
+       }
+
+       .tabl-repont th {
+           font-size: 12px;
+       }
+        .tabl-repont tr {
+           font-size: 12px;
+       }
+        .title-date-chitite-tot{
+        font-size: 15px;
+       }
+   }
+
+   /* Large devices (desktops, 992px and up) */
+   @media (min-width: 992px) and (max-width: 1199.98px) {
+       .tabl-repont th {
+           font-size: 13px;
+       }
+        .tabl-repont tr {
+           font-size: 13px;
+       }
+        .title-date-chitite-tot{
+        font-size: 16px;
+       }
+   }
+
+   /* Extra large devices (large desktops, 1200px and up) */
+   @media (min-width: 1200px) and (max-width: 1399.98px) {
+       .tabl-repont th {
+           font-size: 14px;
+       }
+        .tabl-repont tr {
+           font-size: 13px;
+       }
+        .title-date-chitite-tot{
+        font-size: 16px;
+       }
+   }
+
+   /* XXL (very large screens, 1400px and up) */
+   @media (min-width: 1400px) {
+
+       .tabl-repont th {
+           font-size: 14px;
+       }
+       .tabl-repont tr {
+           font-size: 13px;
+       }
+       .title-date-chitite-tot{
+        font-size: 16px;
+       }
+   }
+
+   .txt-native {
+       font-weight: 600;
+   }

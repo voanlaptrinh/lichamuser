@@ -1,217 +1,382 @@
 @extends('welcome')
 
 @section('content')
-    <div class="container mt-4 mb-5">
-        {{-- PHẦN FORM GIỮ NGUYÊN --}}
-        <div class="card shadow-sm">
-            <div class="card-header bg-light">
-                <h1 class="h3 mb-0">Xem ngày mua nhà / đất</h1>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('buy-house.check') }}" method="POST">
-                    @csrf
-                    {{-- @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Có lỗi xảy ra! Vui lòng kiểm tra lại:</strong>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif --}}
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="birthdate" class="form-label">Ngày sinh</label>
-                            {{-- SỬA Ở ĐÂY: Thêm lại class "dateuser" --}}
-                            <input type="text" class="form-control dateuser @error('birthdate') is-invalid @enderror"
-                                id="birthdate" name="birthdate" placeholder="dd/mm/yyyy"
-                                value="{{ old('birthdate', $inputs['birthdate'] ?? '') }}">
-                            @error('birthdate')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-
-                        <div class="col-md-6 mb-3">
-                            <label for="wedding_date_range" class="form-label">Dự kiến thời gian mua</label>
-                            {{-- SỬA Ở ĐÂY: Thêm lại class "wedding_date_range" --}}
-                            <input type="text"
-                                class="form-control wedding_date_range @error('date_range') is-invalid @enderror"
-                                id="date_range" name="date_range" placeholder="dd/mm/yy - dd/mm/yy"
-                                value="{{ old('date_range', $inputs['date_range'] ?? '') }}">
-                            @error('date_range')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Xem Kết Quả</button>
-                </form>
-            </div>
-        </div>
-        {{-- Giả sử bạn có biến $resultsByYear sau khi form được submit --}}
-        @if (isset($resultsByYear))
-            <div class="results-container mt-5">
-                {{-- Hiển thị thông tin gia chủ --}}
-                {{-- <div class="card mb-4">
-                    <div class="card-header">
-                        <h4>Thông tin gia chủ</h4>
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Ngày sinh:</strong> {{ $birthdateInfo['dob']->format('d/m/Y') }} (Âm lịch:
-                            {{ $birthdateInfo['lunar_dob_str'] }})</p>
-                        <p><strong>Tuổi:</strong> {{ $birthdateInfo['can_chi_nam'] }} - <strong>Mệnh:</strong>
-                            {{ $birthdateInfo['menh']['napAm'] }}</p>
-                    </div>
-                </div> --}}
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs" id="yearTab" role="tablist">
-                        @foreach ($resultsByYear as $year => $data)
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link @if ($loop->first) active @endif"
-                                    id="tab-{{ $year }}-tab" data-bs-toggle="tab"
-                                    data-bs-target="#tab-{{ $year }}" type="button" role="tab"
-                                    aria-controls="tab-{{ $year }}"
-                                    aria-selected="{{ $loop->first ? 'true' : 'false' }}">
-                                    Năm {{ $year }}
-                                </button>
-                            </li>
-                        @endforeach
+    <div class="row">
+        <div class="col-lg-8">
+            <div class=" mt-3 boder_fix">
+                <div class="breadcrumb1">
+                    <ul>
+                        <li class="breadcrumb1-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb1-item">Xem ngày tốt xấu</li>
+                        <li class="breadcrumb1-item">Xem ngày mua nhà</li>
                     </ul>
                 </div>
-                <div class="card-body">
-                    <div class="tab-content" id="yearTabContent">
-                        @foreach ($resultsByYear as $year => $data)
-                            <div class="tab-pane fade @if ($loop->first) show active @endif"
-                                id="tab-{{ $year }}" role="tabpanel"
-                                aria-labelledby="tab-{{ $year }}-tab">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="card p-4 ">
-                                            <h4 class="mb-3">Thông tin gia chủ</h4>
-                                            <ul>
-                                                <li>Ngày sinh dương lịch:
-                                                    <b>{{ $birthdateInfo['dob']->format('d/m/Y') }}</b>
-                                                </li>
-                                                <li>Ngày sinh âm lịch: <b>{{ $birthdateInfo['lunar_dob_str'] }}</b></li>
-                                                <li>Tuổi: <b>{{ $birthdateInfo['can_chi_nam'] }}</b>, Mệnh:
-                                                    {{ $birthdateInfo['menh']['hanh'] }}
-                                                    ({{ $birthdateInfo['menh']['napAm'] }})
-                                                </li>
-                                                <li>Tuổi âm: <b>{{ $data['year_analysis']['lunar_age'] }}</b></li>
+                <div class="page-head">
+                    <h1 class="page-head-title h4 h3-sm h2-md h1-lg ">
+                        XEM NGÀY TỐT ĐỂ MUA NHÀ - AN GIA LẬP NGHIỆP
+                    </h1>
+                    <p class="pb-2">Mua nhà là việc trọng đại của cả đời người, không chỉ là nơi che mưa che nắng mà còn
+                        là nền tảng cho sự nghiệp và hạnh phúc gia đình. Theo quan niệm của người Á Đông, việc chọn được
+                        "ngày lành tháng tốt" để thực hiện giao dịch sẽ mang lại may mắn, tài lộc và sự bình an cho gia chủ.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-body ">
 
-                                            </ul>
+                        <form action="{{ route('buy-house.check') }}" method="POST" class="form_dmy date-picker">
+                            @csrf
 
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-8">
-                                        <div class="card p-4 ">
-                                            <h5 class="text-center">
-                                                kiểm tra kim lâu - hoang ốc - tam tai
-                                            </h5>
-                                            <p>
-                                                Kiểm tra xem năm {{ $year }} {{ $data['canchi'] }} gia chủ tuổi
-                                                {{ $birthdateInfo['can_chi_nam'] }}
-                                                ({{ $data['year_analysis']['lunar_age'] }} tuổi) có phạm phải Kim Lâu,
-                                                Hoang Ốc, Tam Tai không?
-                                            </p>
-                                            <ul>
-                                                <li>
-                                                    {{ $data['year_analysis']['details']['kimLau']['message'] }}
-                                                </li>
-                                                <li>
-                                                    {{ $data['year_analysis']['details']['hoangOc']['message'] }}
-                                                </li>
-                                                <li>
-                                                    {{ $data['year_analysis']['details']['tamTai']['message'] }}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    {{-- @dd($data) --}}
-                                    <p>{!! $data['year_analysis']['description'] !!}</p>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="birthdate" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
+                                    {{-- SỬA Ở ĐÂY: Thêm lại class "dateuser" --}}
+                                    <input type="text"
+                                        class="form-control dateuser @error('birthdate') is-invalid @enderror"
+                                        id="birthdate" name="birthdate" placeholder="dd/mm/yyyy"
+                                        value="{{ old('birthdate', $inputs['birthdate'] ?? '') }}">
+                                    @error('birthdate')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
 
-                                @if ($data['year_analysis'])
-                                    <h4 class="mt-4 mb-3">Bảng điểm chi tiết các ngày tốt</h4>
+                                <div class="col-md-6 mb-3">
+                                    <label for="wedding_date_range" class="form-label">Dự kiến thời gian mua <span class="text-danger">*</span></label>
+                                    {{-- SỬA Ở ĐÂY: Thêm lại class "wedding_date_range" --}}
+                                    <input type="text"
+                                        class="form-control wedding_date_range @error('date_range') is-invalid @enderror"
+                                        id="date_range" name="date_range" placeholder="dd/mm/yy - dd/mm/yy"
+                                        value="{{ old('date_range', $inputs['date_range'] ?? '') }}">
+                                    @error('date_range')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="text-end">
 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover text-center align-middle">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>Ngày Dương Lịch</th>
-                                                    <th>Ngày Âm Lịch</th>
-                                                    <th>Điểm</th>
-                                                    <th>Đánh giá</th>
-                                                    <th>Giờ tốt (Hoàng Đạo)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {{-- Lọc và chỉ hiển thị những ngày có điểm TỐT hoặc RẤT TỐT --}}
-                                                @php
-                                                    $goodDays = array_filter($data['days'], function ($day) {
-                                                        $rating = $day['day_score']['rating'];
-                                                        return $rating === 'Tốt' || $rating === 'Rất tốt';
-                                                    });
-                                                @endphp
+                                <button type="submit" class="btn btn-outline-danger">Xem Kết Quả</button>
+                            </div>
+                        </form>
+                        @if (isset($resultsByYear))
+                            <div class="results-container mt-5">
 
-                                                @forelse($data['days'] as $day)
-                                                    @php
-                                                        if (!function_exists('getRatingClassBuildHouse')) {
-                                                            function getRatingClassBuildHouse(string $rating): string
-                                                            {
-                                                                return match ($rating) {
-                                                                    'Rất tốt' => 'table-success',
-                                                                    'Tốt' => 'table-info',
-                                                                    'Trung bình' => 'table-warning',
-                                                                    default => 'table-danger',
-                                                                };
-                                                            }
-                                                        }
-                                                    @endphp
-                                                    <tr
-                                                        class="{{ getRatingClassBuildHouse($day['day_score']['rating']) }}">
-                                                        <td>
-                                                            <strong>{{ $day['date']->format('d/m/Y') }}</strong>
-                                                            <br>
-                                                            <small>{{ $day['weekday_name'] }}</small>
-                                                        </td>
-                                                        <td>{{ $day['full_lunar_date_str'] }}</td>
-                                                        <td class="fw-bold fs-5">{{ $day['day_score']['percentage'] }}%
-                                                        </td>
-                                                        <td><strong>{{ $day['day_score']['rating'] }}</strong></td>
-                                                        <td>
-                                                            @if (!empty($day['good_hours']))
-                                                                {{ implode('; ', $day['good_hours']) }}
-                                                            @else
-                                                                <span class="text-muted">Không có</span>
-                                                            @endif
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="5" class="text-center p-4">
-                                                            <p class="mb-0">Trong khoảng thời gian bạn chọn của năm nay,
-                                                                không tìm thấy ngày nào thực sự tốt để tiến hành xây dựng.
+                                <div class="card-header">
+                                    <ul class="nav nav-tabs flex-wrap w-100 text-center customers-nav-tabs" id="yearTab"
+                                        role="tablist">
+                                        @foreach ($resultsByYear as $year => $data)
+                                            <li class="nav-item flex-fill border-top" role="presentation">
+                                                <button
+                                                    class="nav-link w-100 @if ($loop->first) active @endif"
+                                                    id="tab-{{ $year }}-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#tab-{{ $year }}" type="button" role="tab"
+                                                    aria-controls="tab-{{ $year }}"
+                                                    aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                                                    Năm {{ $year }}
+                                                </button>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="card-body p-0 mt-3">
+                                    <div class="tab-content" id="yearTabContent">
+                                        @foreach ($resultsByYear as $year => $data)
+                                            <div class="tab-pane fade @if ($loop->first) show active @endif"
+                                                id="tab-{{ $year }}" role="tabpanel"
+                                                aria-labelledby="tab-{{ $year }}-tab">
+                                                <div class="row g-2">
+                                                    <div class="col-lg-12">
+                                                        <div class="card p-2 ">
+                                                            <h4 class="mb-3 text-center">Thông tin gia chủ</h4>
+                                                            <ul>
+                                                                <li>Ngày sinh dương lịch:
+                                                                    <b>{{ $birthdateInfo['dob']->format('d/m/Y') }}</b>
+                                                                </li>
+                                                                <li>Ngày sinh âm lịch:
+                                                                    <b>{{ $birthdateInfo['lunar_dob_str'] }}</b>
+                                                                </li>
+                                                                <li>Tuổi: <b>{{ $birthdateInfo['can_chi_nam'] }}</b>, Mệnh:
+                                                                    {{ $birthdateInfo['menh']['hanh'] }}
+                                                                    ({{ $birthdateInfo['menh']['napAm'] }})
+                                                                </li>
+                                                                <li>Tuổi âm:
+                                                                    <b>{{ $data['year_analysis']['lunar_age'] }}</b>
+                                                                </li>
+
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="card p-2 ">
+                                                            <h5 class="text-center">
+                                                                kiểm tra kim lâu - hoang ốc - tam tai
+                                                            </h5>
+                                                            <p>
+                                                                Kiểm tra xem năm {{ $year }} {{ $data['canchi'] }}
+                                                                gia chủ
+                                                                tuổi
+                                                                {{ $birthdateInfo['can_chi_nam'] }}
+                                                                ({{ $data['year_analysis']['lunar_age'] }} tuổi) có phạm
+                                                                phải Kim Lâu,
+                                                                Hoang Ốc, Tam Tai không?
                                                             </p>
-                                                            <small>Bạn có thể thử mở rộng khoảng thời gian tìm kiếm.</small>
-                                                        </td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
+                                                            <ul>
+                                                                <li>
+                                                                    {{ $data['year_analysis']['details']['kimLau']['message'] }}
+                                                                </li>
+                                                                <li>
+                                                                    {{ $data['year_analysis']['details']['hoangOc']['message'] }}
+                                                                </li>
+                                                                <li>
+                                                                    {{ $data['year_analysis']['details']['tamTai']['message'] }}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    {{-- @dd($data) --}}
+                                                    <p>{!! $data['year_analysis']['description'] !!}</p>
+                                                </div>
+
+
+                                                @if ($data['year_analysis'])
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <h5 class="mb-3 title-date-chitite-tot">Bảng điểm chi tiết các ngày tốt</h4>
+                                                        </div>
+                                                      
+                                                        <div class="d-flex align-items-center">
+                                                            
+                                                            <select class="form-select" id="sort-select"
+                                                                >
+                                                                <option value="date" selected>Theo ngày (Mặc định)
+                                                                </option>
+                                                                <option value="score_desc"> Cao đến thấp</option>
+                                                                <option value="score_asc">Thấp đến cao</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="table-responsive mt-2">
+                                                        <table
+                                                            class="table table-bordered table-hover text-center align-middle tabl-repont">
+                                                            <thead class="table-light">
+                                                                <tr>
+                                                                    <th>Ngày Dương Lịch</th>
+                                                                    <th>Ngày Âm Lịch</th>
+                                                                    <th>Điểm</th>
+                                                                    <th>Đánh giá</th>
+                                                                    <th>Giờ tốt (Hoàng Đạo)</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="results-tbody">
+                                                                {{-- Lọc và chỉ hiển thị những ngày có điểm TỐT hoặc RẤT TỐT --}}
+                                                                @php
+                                                                    $goodDays = array_filter($data['days'], function (
+                                                                        $day,
+                                                                    ) {
+                                                                        $rating = $day['day_score']['rating'];
+                                                                        return $rating === 'Tốt' ||
+                                                                            $rating === 'Rất tốt';
+                                                                    });
+                                                                @endphp
+
+                                                                @forelse($data['days'] as $day)
+                                                                    @php
+                                                                        if (
+                                                                            !function_exists('getRatingClassBuildHouse')
+                                                                        ) {
+                                                                            function getRatingClassBuildHouse(
+                                                                                string $rating,
+                                                                            ): string {
+                                                                                return match ($rating) {
+                                                                                    'Rất tốt' => 'table-success',
+                                                                                    'Tốt' => 'table-info',
+                                                                                    'Trung bình' => 'table-warning',
+                                                                                    default => 'table-danger',
+                                                                                };
+                                                                            }
+                                                                        }
+                                                                    @endphp
+                                                                    <tr
+                                                                        class="{{ getRatingClassBuildHouse($day['day_score']['rating']) }}">
+                                                                        <td>
+                                                                            <strong>{{ $day['date']->format('d/m/Y') }}</strong>
+                                                                            <br>
+                                                                            <small>{{ $day['weekday_name'] }}</small>
+                                                                        </td>
+                                                                        <td>{{ $day['full_lunar_date_str'] }}</td>
+                                                                        <td class="fw-bold">
+                                                                            {{ $day['day_score']['percentage'] }}%
+                                                                        </td>
+                                                                        <td><strong>{{ $day['day_score']['rating'] }}</strong>
+                                                                        </td>
+                                                                        <td>
+                                                                            @if (!empty($day['good_hours']))
+                                                                                {{ implode('; ', $day['good_hours']) }}
+                                                                            @else
+                                                                                <span class="text-muted">Không có</span>
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                @empty
+                                                                    <tr>
+                                                                        <td colspan="5" class="text-center p-4">
+                                                                            <p class="mb-0">Trong khoảng thời gian bạn
+                                                                                chọn của năm
+                                                                                nay,
+                                                                                không tìm thấy ngày nào thực sự tốt để tiến
+                                                                                hành xây
+                                                                                dựng.
+                                                                            </p>
+                                                                            <small>Bạn có thể thử mở rộng khoảng thời gian
+                                                                                tìm
+                                                                                kiếm.</small>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforelse
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                @endif
+
+                                            </div>
+                                        @endforeach
                                     </div>
-                                @endif
+                                </div>
 
                             </div>
-                        @endforeach
+                        @else
+                            <h5>
+                                Tại Sao Cần Chọn Ngày Đẹp Để Mua Nhà?
+                            </h5>
+                            <p>Việc khởi đầu suôn sẻ sẽ tạo ra nguồn năng lượng tích cực, ảnh hưởng đến vận khí của cả gia
+                                đình trong ngôi nhà mới.</p>
+                            <table class="table table-bordered table-actent">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b> An Tâm Vững Chắc</b>
+                                        </td>
+                                        <td>
+                                            Bắt đầu mọi việc vào ngày tốt giúp gia chủ có tâm lý vững vàng, tin tưởng vào
+                                            một tương lai tốt đẹp.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b> Thu Hút Tài Lộc</b>
+                                        </td>
+                                        <td>
+                                            Ngày hợp mệnh giúp chiêu tài, kích lộc, tạo nền tảng để gia chủ làm ăn phát đạt,
+                                            thịnh vượng.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b> Gia Đạo Hòa Thuận</b>
+                                        </td>
+                                        <td>
+                                            Năng lượng hòa hợp của ngày lành giúp các thành viên trong gia đình sống vui vẻ,
+                                            yêu thương và gắn kết.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b> Sự Nghiệp Hanh Thông</b>
+                                        </td>
+                                        <td>
+                                            "An cư" rồi mới "lạc nghiệp". Một khởi đầu tốt đẹp sẽ là bước đệm cho sự nghiệp
+                                            thăng tiến.
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <h5>Phương Pháp Luận Giải Của Chúng Tôi</h5>
+                            <p>Để đưa ra kết quả chính xác và đáng tin cậy, công cụ của chúng tôi phân tích dựa trên các
+                                nguyên tắc cốt lõi của Kinh Dịch và Phong Thủy học:</p>
+                            <ul style="list-style: circle; margin-left: 2rem;">
+                                <li><b>Dựa trên ngày tháng năm sinh của gia chủ:</b>Tính toán Ngũ hành bản mệnh, Thiên Can,
+                                    Địa Chi để tìm ra các ngày tương sinh, tương hợp.</li>
+                                <li><b>Loại trừ các ngày Bách Kỵ:</b> Tự động loại bỏ các ngày xấu, đại kỵ cho việc lớn như:
+                                    <b>Tam Nương, Nguyệt Kỵ, Sát Chủ, Thọ Tử, Trùng Tang, Trùng Phục...</b></li>
+                                <li><b>Chọn lọc các Sao Tốt (Cát Tinh):</b>Ưu tiên những ngày có nhiều sao tốt chiếu mệnh
+                                    như:<b>Thiên Quý, Thiên Đức, Nguyệt Đức, Thiên Hỷ, Sinh Khí...</b></li>
+                                <li><b>Đối chiếu theo Thập Nhị Trực:</b>Lựa chọn các ngày có Trực tốt cho việc giao dịch,
+                                    mua bán như<b>Trực Mãn, Trực Thành, Trực Khai.</b></li>
+                                <li><b>Gợi ý Giờ Hoàng Đạo:</b>Sau khi chọn được ngày tốt, chúng tôi sẽ gợi ý các khung giờ
+                                    vàng trong ngày để tiến hành ký kết, đặt cọc.</li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
-
             </div>
-        @endif
-    </div>
 
+
+        </div>
+        <div class="col-lg-4">
+            @include('assinbar')
+        </div>
+    </div>
+    <script>
+        // Đặt đoạn mã này vào file JS hoặc trong thẻ <script> ở cuối trang
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sortSelect = document.getElementById('sort-select');
+            const resultsTbody = document.getElementById('results-tbody');
+
+            // Kiểm tra xem các phần tử có tồn tại không để tránh lỗi
+            if (!sortSelect || !resultsTbody) {
+                return;
+            }
+
+            // Lấy tất cả các hàng (tr) từ tbody
+            const rows = Array.from(resultsTbody.querySelectorAll('tr'));
+
+            // Lưu lại thứ tự ban đầu (theo ngày) để có thể quay lại
+            rows.forEach((row, index) => {
+                row.dataset.originalIndex = index;
+            });
+
+            // Hàm để lấy điểm số từ một hàng
+            function getScore(row) {
+                // Tìm ô chứa điểm, lấy text và chuyển sang số nguyên
+                const scoreCell = row.querySelector('td.fw-bold');
+                if (scoreCell) {
+                    // Loại bỏ ký tự '%' và chuyển thành số
+                    return parseInt(scoreCell.textContent.replace('%', ''), 10);
+                }
+                return 0; // Trả về 0 nếu không tìm thấy điểm
+            }
+
+            // Lắng nghe sự kiện 'change' trên dropdown
+            sortSelect.addEventListener('change', function() {
+                const sortValue = this.value; // Lấy giá trị của option được chọn
+
+                // Sắp xếp mảng các hàng dựa trên lựa chọn
+                rows.sort((rowA, rowB) => {
+                    if (sortValue === 'score_desc') {
+                        // Sắp xếp điểm từ cao đến thấp
+                        return getScore(rowB) - getScore(rowA);
+                    } else if (sortValue === 'score_asc') {
+                        // Sắp xếp điểm từ thấp đến cao
+                        return getScore(rowA) - getScore(rowB);
+                    } else {
+                        // Mặc định: Sắp xếp theo ngày (thứ tự ban đầu)
+                        return rowA.dataset.originalIndex - rowB.dataset.originalIndex;
+                    }
+                });
+
+                // Xóa các hàng hiện tại khỏi tbody
+                // resultsTbody.innerHTML = ''; // Cách này cũng được nhưng không hiệu quả bằng cách dưới
+
+                // Thêm lại các hàng đã được sắp xếp vào tbody
+                // Thao tác này sẽ tự động di chuyển các hàng đến vị trí mới
+                rows.forEach(row => {
+                    resultsTbody.appendChild(row);
+                });
+            });
+        });
+    </script>
 @endsection

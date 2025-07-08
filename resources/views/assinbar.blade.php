@@ -1,4 +1,4 @@
- <div class="widget bg-wg2" style="background: #f1f1f1;">
+ <div class="widget bg-wg2 mt-4" style="background: #f1f1f1;">
      <div class="widget-title fixtitlewidget">
          <h2 class="widget-title-cat fixtitlewidget">Xem ngày tốt xấu cho việc</h2>
      </div>

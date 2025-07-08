@@ -5,154 +5,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chuyển Đổi Ngày Dương Sang Âm</title>
-       <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Các link CSS nếu cần, ví dụ: Bootstrap hoặc custom CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css"> {{-- hoặc dark, material_red --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/airbnb.css') }}"> {{-- hoặc dark, material_red --}}
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/styledemo.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     @stack('stylehome')
+
 </head>
 
 <body>
-    <div class="container">
-        <header class="d-flex justify-content-center py-3" style=" background: papayawhip">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="{{ route('home') }}" class="nav-link active" aria-current="page">Trang
-                        chủ</a></li>
-                <li class="nav-item"><a href="{{ route('horoscope.index') }}" class="nav-link text-dark"
-                        aria-current="page">Cung
-                        hoàng đạo</a></li>
-                <li>
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Lịch Tháng
-                        </button>
-                        <ul class="dropdown-menu">
-                            @php($currentYear = date('Y'))
-                            @for ($month = 1; $month <= 12; $month++)
-                                <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('lich.thang', ['nam' => $currentYear, 'thang' => $month]) }}">Tháng
-                                        {{ $month }}</a>
-                                </li>
-                            @endfor
 
-                        </ul>
+    <div class="site-wrap">
+        <header class="fbs__net-navbar navbar navbar-expand-lg">
+            <div class="container d-flex align-items-center justify-content-between">
+
+                <!-- Start Logo-->
+                <a class="navbar-brand w-auto" href="{{ route('home') }}">
+                    <img class="logo img-fluid"
+                        src="https://themewagon.github.io/Nova-Bootstrap/assets/images/logo-dark.svg" alt="">
+                </a>
+                <!-- End Logo-->
+
+                <!-- Start offcanvas-->
+                <!-- THAY ĐỔI 1: Thêm class `flex-grow-1` để container này chiếm hết không gian ở giữa -->
+                <div class="offcanvas offcanvas-start w-75 flex-grow-1" id="fbs__net-navbars" tabindex="-1"
+                    aria-labelledby="fbs__net-navbarsLabel">
+
+                    <div class="offcanvas-header">
+                        <div class="offcanvas-header-logo">
+                            <a class="logo-link" id="fbs__net-navbarsLabel" href="{{ route('home') }}">
+                                <img class="logo img-fluid"
+                                    src="https://themewagon.github.io/Nova-Bootstrap/assets/images/logo-dark.svg"
+                                    alt="FreeBootstrap.net image placeholder">
+                            </a>
+                        </div>
+                        <button class="btn-close btn-close-black" type="button" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
                     </div>
 
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Lịch năm
-                        </button>
-                        <ul class="dropdown-menu">
-                            @php($currentYearHeader = date('Y'))
-                            @php($startYearHeader = $currentYearHeader - 1)
-                            @php($endYearHeader = $currentYearHeader + 10)
+                    <div class="offcanvas-body align-items-lg-center">
 
-                            @for ($year = $startYearHeader; $year <= $endYearHeader; $year++)
-                                <li>
-                                    <a href="{{ route('lich.nam', ['nam' => $year]) }}">
-                                        Xem lịch năm {{ $year }}
-                                    </a>
-                                </li>
-                            @endfor
+                        <!-- THAY ĐỔI 2: Thay `me-auto` bằng `mx-auto` để căn giữa menu -->
+                        <ul class="navbar-nav nav mx-auto ps-lg-5 mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link scroll-link active" aria-current="page"
+                                    href="#home">Trang chủ</a></li>
+
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle scrot-dropdow"
+                                    href="#" data-bs-toggle="dropdown" aria-expanded="false">Đổi ngày <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link scroll-link dropdown-item"
+                                            href="{{ route('doi-licham') }}">Đổi dương sang âm
+                                        </a></li>
+                                    <li><a class="nav-link scroll-link dropdown-item"
+                                            href="{{ route('doi-licham') }}">Đổi âm sang dương
+                                        </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link scroll-link"
+                                    href="{{ route('horoscope.index') }}">Cung hoàng đạo</a></li>
+
+
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle scrot-dropdow"
+                                    href="#" data-bs-toggle="dropdown" aria-expanded="false"> Lịch Tháng <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    @php($currentYear = date('Y'))
+                                    @for ($month = 1; $month <= 12; $month++)
+                                        <li><a class="nav-link scroll-link dropdown-item"
+                                                href="{{ route('lich.thang', ['nam' => $currentYear, 'thang' => $month]) }}">Tháng
+                                                {{ $month }}</a></li>
+                                    @endfor
+
+
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle scrot-dropdow"
+                                    href="#" data-bs-toggle="dropdown" aria-expanded="false">Lịch năm <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    @php($currentYearHeader = date('Y'))
+                                    @php($startYearHeader = $currentYearHeader - 1)
+                                    @php($endYearHeader = $currentYearHeader + 10)
+
+                                    @for ($year = $startYearHeader; $year <= $endYearHeader; $year++)
+                                        <li>
+                                            <a href="{{ route('lich.nam', ['nam' => $year]) }}"
+                                                class="nav-link scroll-link dropdown-item">
+                                                Xem lịch năm {{ $year }}
+                                            </a>
+                                        </li>
+                                    @endfor
+
+
+
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link scroll-link"
+                                    href="{{ route('van-khan.index') }}">Văn khấn</a></li>
+                            <li class="nav-item"><a class="nav-link scroll-link"
+                                    href="{{ route('thuoc-lo-ban.index') }}">Thước lỗ ban</a></li>
                         </ul>
+
                     </div>
+                </div>
+                <!-- End offcanvas-->
 
-                </li>
-                <li class="nav-item"><a href="{{ route('van-khan.index') }}" class="nav-link text-dark"
-                        aria-current="page">Văn
-                        khấn</a></li>
-                <li class="nav-item"><a href="{{ route('thuoc-lo-ban.index') }}" class="nav-link text-dark"
-                        aria-current="page">Thước lỗ ban</a></li>
-            </ul>
-        </header>
-    </div>
-
-    <div class="container">
-        <div class="row pt-3">
-            <div class="col-lg-12">
-                @yield('content')
+                <div class="ms-auto w-auto">
+                    <div class="header-social d-flex align-items-center gap-1">
+                        <button class="fbs__net-navbar-toggler justify-content-center align-items-center ms-auto"
+                            data-bs-toggle="offcanvas" data-bs-target="#fbs__net-navbars"
+                            aria-controls="fbs__net-navbars" aria-label="Toggle navigation" aria-expanded="false">
+                            <svg class="fbs__net-icon-menu" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="21" x2="3" y1="6" y2="6"></line>
+                                <line x1="15" x2="3" y1="12" y2="12"></line>
+                                <line x1="17" x2="3" y1="18" y2="18"></line>
+                            </svg>
+                            <svg class="fbs__net-icon-close" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
-            {{-- <div class="col-lg-3">
-                <ul class="">
+        </header>
 
-                    <li class="nav-item"><a href="{{ route('astrology.form') }}" class="nav-link">Xem tuổi cưới hỏi</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('buy-house.form') }}" class="nav-link">Xem ngày mua nhà</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('breaking.form') }}" class="nav-link">Xem ngày động thổ</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('nhap-trach.form') }}" class="nav-link">Xem ngày nhập
-                            trạch</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('xuat-hanh.form') }}" class="nav-link">Xem ngày xuất
-                            hành</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('khai-truong.form') }}" class="nav-link">Xem ngày khai
-                            trương</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('ky-hop-dong.form') }}" class="nav-link">Xem ngày hý hợp
-                            đồng</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('cai-tang.form') }}" class="nav-link">Xem ngày cải táng</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('ban-tho.form') }}" class="nav-link">Xem ngày Đổi ban
-                            thờ</a>
-                    </li>
-                    <li class="nav-item"><a href="{{ route('lap-ban-tho.form') }}" class="nav-link">Xem ngày Lập ban
-                            thờ</a> </li>
-                    <li class="nav-item"><a href="{{ route('giai-han.form') }}" class="nav-link">Xem Ngày Cúng sao -
-                            giải
-                            hạn</a> </li>
-                    <li class="nav-item"><a href="{{ route('tran-trach.form') }}" class="nav-link">Xem Ngày yểm trấn -
-                            trấn
-                            trạch</a> </li>
-                    <li class="nav-item"><a href="{{ route('phong-sinh.form') }}" class="nav-link">Xem Ngày Cầu an -
-                            làm
-                            phúc - phóng sinh</a> </li>
-                    <li class="nav-item"><a href="{{ route('mua-xe.form') }}" class="nav-link">Xem ngày mua xe - nhận
-                            xe
-                            mới</a> </li>
-                    <li class="nav-item"><a href="{{ route('du-lich.form') }}" class="nav-link">Xem ngày xuất hành - du
-                            lịch - công tác</a> </li>
-                    <li class="nav-item"><a href="{{ route('thi-cu.form') }}" class="nav-link">Xem ngày thi cử phỏng
-                            vấn</a> </li>
-                    <li class="nav-item"><a href="{{ route('cong-viec-moi.form') }}" class="nav-link">Xem Ngày Nhận
-                            công
-                            việc mới</a> </li>
-                    <li class="nav-item"><a href="{{ route('giay-to.form') }}" class="nav-link">Xem ngày làm giấy tờ
-                            -
-                            cccd, hộ chiếu </a> </li>
-                    <li class="nav-item"><a href="{{ route('huong-ban-tho.form') }}" class="nav-link">Xem Hướng ban
-                            thờ
-                        </a> </li>
-                    <li class="nav-item"><a href="{{ route('huong-nha.form') }}" class="nav-link">Xem Hướng nhà hợp
-                            tuổi</a> </li>
-                    <li class="nav-item"><a href="{{ route('huong-bep.form') }}" class="nav-link">Xem Hướng bếp hợp
-                            tuổi</a> </li>
-                    <li class="nav-item"><a href="{{ route('huong-phong-ngu.form') }}" class="nav-link">Xem Hướng
-                            phòng
-                            ngủ
-                            hợp tuổi</a> </li>
-                    <li class="nav-item"><a href="{{ route('huong-ban-lam-viec.form') }}" class="nav-link">Xem Hướng
-                            Bàn
-                            làm việc</a> </li>
-                    <li class="nav-item"><a href="{{ route('xem-ngay-cua-con.index') }}" class="nav-link">Xem giờ sinh của con</a> </li>
-                </ul>
-            </div> --}}
+
+    
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    @yield('content')
+                </div>
+
+            </div>
         </div>
     </div>
 
     <!-- JS của Bootstrap (nếu sử dụng Bootstrap) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/vn.js"></script>
+    <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/js/flatpickr.js') }}"></script>
+    <script src="{{ asset('/js/vn.js') }}"></script>
 
 
     @stack('scripts')

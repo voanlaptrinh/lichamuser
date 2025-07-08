@@ -1,11 +1,13 @@
 @extends('welcome')
 @section('content')
-    <div class="main-container pt-5">
+    <div class="main-container ">
+        <h1 class="p-title">Thước lỗ ban</h1>
+       
         <div class="header-section">
 
             <div class="input-group">
                 <input type="number" id="ruler-input" value="0" min="0" step="1" />
-                <span>mm (nhập số)</span>
+                <span class="ps-2">mm (nhập số)</span>
             </div>
         </div>
 
@@ -18,38 +20,46 @@
         </div>
 
         <div class="info-panel" id="info-panel"></div>
+
+         <div class="card mt-3">
+          <div class="card-body">
+              <h5>Hướng dẫn xem thước lỗ ban</h5>
+            <p>Thước Lỗ ban là cây thước được lấy tên gọi từ một bậc thầy phong thủy tên là Lỗ Ban - Ông Tổ nghề mộc lừng
+                danh ở
+                Trung Quốc thời Xuân Thu phát minh ra. Nhưngtrên thực tế, trong ngành địa lý cổ phương Đông, ngoài thước Lỗ
+                Ban
+                (Lỗ Ban xích) còn có nhiều loạithước khác được áp dụng như thước Áp Bạch (Áp Bạch xích), thước Đinh Lan
+                (Đinh
+                Lan xích), bản thân thướcLỗ ban cũng bao gồm nhiều phiên bản khác nhau được sử dụng như thước lỗ bản 52,2
+                cm;
+                42,9 cm; 38.8 cm. Trên Thước Lỗ Ban đó có phân định các khoảng tốt - xấu, giúp người sử dụng biết được kích
+                thước nào là đẹp nên sử dụng, kích thước nào là xấu nên tránh. Thước Lỗ Ban được sáng tạo, sử dụng và đúc
+                kết
+                thử nghiệm qua cả ngàn đời nay định hai chữ tốt – xấu. Dĩ nhiên chỉ bằng một cây thước làm sao cải đổi được
+                vận
+                mệnh, nhưng có lẽ qua chính sự áp dụng ấy mà tai họa có ập đến thì bị giảm trừ đi, lộc phúc có về thì được
+                nhân
+                lên gấp bội.
+
+                Do có nhiều bài viết, thông tin về thước Lỗ ban có các kích thước khác nhau. Ở đây chúng tôi chỉ giớithiệu 3
+                loại thước phổ biến nhất trên thị trường Việt Nam hiện nay là loại kích thước Lỗ Ban 52,2 cm;42,9 cm và 38,8
+                cm.
+            </p>
+            <ul>
+                <li>- Đo kích thước rỗng (thông thủy): Thước Lỗ Ban 52,2 cm</li>
+                <li>
+                    - Đo kích thước đặc: khối xây dựng (bếp, bệ, bậc…): Thước Lỗ Ban 42,9 cm
+                </li>
+                <li>
+
+                    - Đo Âm phần: mồ mả, đồ nội thất (bàn thờ, tủ thờ, khuôn khổ bài vị…): Thước Lỗ Ban 38,3 cm
+                </li>
+            </ul>
+          </div>
+        </div>
     </div>
 
-    <div>
-        <h5>Hướng dẫn xem thước lỗ ban</h5>
-        <p>Thước Lỗ ban là cây thước được lấy tên gọi từ một bậc thầy phong thủy tên là Lỗ Ban - Ông Tổ nghề mộc lừng danh ở
-            Trung Quốc thời Xuân Thu phát minh ra. Nhưngtrên thực tế, trong ngành địa lý cổ phương Đông, ngoài thước Lỗ Ban
-            (Lỗ Ban xích) còn có nhiều loạithước khác được áp dụng như thước Áp Bạch (Áp Bạch xích), thước Đinh Lan (Đinh
-            Lan xích), bản thân thướcLỗ ban cũng bao gồm nhiều phiên bản khác nhau được sử dụng như thước lỗ bản 52,2 cm;
-            42,9 cm; 38.8 cm. Trên Thước Lỗ Ban đó có phân định các khoảng tốt - xấu, giúp người sử dụng biết được kích
-            thước nào là đẹp nên sử dụng, kích thước nào là xấu nên tránh. Thước Lỗ Ban được sáng tạo, sử dụng và đúc kết
-            thử nghiệm qua cả ngàn đời nay định hai chữ tốt – xấu. Dĩ nhiên chỉ bằng một cây thước làm sao cải đổi được vận
-            mệnh, nhưng có lẽ qua chính sự áp dụng ấy mà tai họa có ập đến thì bị giảm trừ đi, lộc phúc có về thì được nhân
-            lên gấp bội.
 
-            Do có nhiều bài viết, thông tin về thước Lỗ ban có các kích thước khác nhau. Ở đây chúng tôi chỉ giớithiệu 3
-            loại thước phổ biến nhất trên thị trường Việt Nam hiện nay là loại kích thước Lỗ Ban 52,2 cm;42,9 cm và 38,8 cm.
-        </p>
-        <ul>
-            <li>- Đo kích thước rỗng (thông thủy): Thước Lỗ Ban 52,2 cm</li>
-            <li>
-                - Đo kích thước đặc: khối xây dựng (bếp, bệ, bậc…): Thước Lỗ Ban 42,9 cm
-            </li>
-            <li>
-
-                - Đo Âm phần: mồ mả, đồ nội thất (bàn thờ, tủ thờ, khuôn khổ bài vị…): Thước Lỗ Ban 38,3 cm
-            </li>
-        </ul>
-
-
-
-
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const rulersData = @json($rulersData);

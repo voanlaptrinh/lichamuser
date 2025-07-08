@@ -101,7 +101,7 @@
 
         </div>
           <style>
-            .active {
+            .col-item-year-acrive .active {
                 background: pink
             }
         </style>
@@ -109,7 +109,7 @@
           <h2 class="p-title">Lịch âm các tháng năm {{ $yy }}</h2>
             <div class="row g-2">
                 @for ($i = 1; $i <= 12; $i++)
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-item-year-acrive">
                         <a href="{{ route('lich.thang', ['nam' => $yy, 'thang' => $i]) }}" class="">
                             <div class="card {{ $mm == $i ? 'active' : '' }}">
                                 <div class="card-body text-center">

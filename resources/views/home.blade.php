@@ -1,9 +1,9 @@
 @extends('welcome')
 @section('content')
-
+ <h1 class="p-title">Lịch âm hôm nay - Xem ngày tốt xấu</h1>
     <div class="row">
         <div class="col-lg-8">
-            <div class=" mt-3">
+            <div class=" mt-1">
                 <div class="row g-4">
 
                     <div class="col-lg-7 col-md-7">
@@ -616,7 +616,7 @@
 
                             <!-- Cột nút bấm -->
                             <div class="col-md-4">
-                                <button class="btn btn-primary w-100" type="submit">Xem ngày</button>
+                                <button class="btn btn-outline-danger w-100" type="submit">Xem ngày</button>
                             </div>
                         </div>
                     </form>
