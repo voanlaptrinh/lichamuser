@@ -132,10 +132,10 @@
                                                             <li><b>1. Chuẩn Bị Lễ Vật:</b> Sắm sửa mâm cúng Thần Tài - Thổ Địa đầy đủ (hoa quả, tam sên, vàng mã, trầu cau...).
                                                             </li>
                                                             <li><b>2.Chuẩn Bị Văn Khấn:</b> In sẵn bài văn khấn trang trọng, thể hiện lòng thành kính.</li>
-                                                            <li><b>3. Chọn Người "Mở Hàng":</b>  Nhờ một người hợp tuổi, tính tình vui vẻ, xởi lởi đến mua hàng đầu tiên để lấy "vía" may mắ.</li>
+                                                            <li><b>3. Chọn Người "Mở Hàng":</b>  Nhờ một người hợp tuổi, tính tình vui vẻ, xởi lởi đến mua hàng đầu tiên để lấy "vía" may mắn.</li>
                                                             <li><b>4. Tạo Không Khí Sôi Động:</b> Mở nhạc vui tươi, có thể tổ chức múa lân, các chương trình khuyến mãi để thu hút dương khí và sự chú ý.</li>
                                                         </ul>
-                                                        <p class="fst-italicfw-bolder">Kính chúc Quý Doanh nghiệp khai trương đại cát đại lợi, mã đáo thành công, tiền vào như nước!</p>
+                                                        <p class="fst-italic fw-bolder">Kính chúc Quý Doanh nghiệp khai trương đại cát đại lợi, mã đáo thành công, tiền vào như nước!</p>
 
                                                     </div>
                                                     {{-- <p>{!! $data['year_analysis']['description'] !!}</p> --}}
@@ -143,11 +143,22 @@
 
 
                                                 @if ($data['year_analysis'])
-                                                    <h4 class="mt-4 mb-3">Bảng điểm chi tiết các ngày tốt</h4>
+                                                      <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+                                                        <h4 class="mb-0 title-date-chitite-tot">Bảng điểm chi tiết các ngày
+                                                            tốt</h4>
+                                                        <div class="d-flex align-items-center ">
+                                                            <select class="form-select" id="sort-select">
+                                                                <option value="date" selected>Theo ngày (Mặc định)
+                                                                </option>
+                                                                <option value="score_desc"> Cao đến thấp</option>
+                                                                <option value="score_asc">Thấp đến cao</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="table-responsive">
                                                         <table
-                                                            class="table table-bordered table-hover text-center align-middle">
+                                                            class="table table-bordered table-hover text-center align-middle tabl-repont">
                                                             <thead class="table-light">
                                                                 <tr>
                                                                     <th>Ngày Dương Lịch</th>
@@ -157,7 +168,7 @@
                                                                     <th>Giờ tốt (Hoàng Đạo)</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
+                                                            <tbody id="results-tbody">
                                                                 {{-- Lọc và chỉ hiển thị những ngày có điểm TỐT hoặc RẤT TỐT --}}
 
                                                                 @forelse($data['days'] as $day)
@@ -185,8 +196,8 @@
                                                                             <small>{{ $day['weekday_name'] }}</small>
                                                                         </td>
                                                                         <td>{{ $day['full_lunar_date_str'] }}</td>
-                                                                        <td class="fw-bold fs-5">
-                                                                            {{ $day['day_score']['percentage'] }}%
+                                                                         <td class="fw-bold cour">
+                                                                            {{ $day['day_score']['percentage'] }} %
                                                                         </td>
                                                                         <td><strong>{{ $day['day_score']['rating'] }}</strong>
                                                                         </td>
@@ -271,7 +282,7 @@
 
                                 </tbody>
                             </table>
-                            <div class="h5">YPhương Pháp Luận Giải Chuyên Sâu Của Chúng Tôi</div>
+                            <div class="h5">Phương Pháp Luận Giải Chuyên Sâu Của Chúng Tôi</div>
                             <p>Để tìm ra ngày khai trương hoàn hảo, công cụ của chúng tôi không chỉ xem lịch thông thường mà
                                 còn phân tích dựa trên các yếu tố phức tạp, dành riêng cho kinh doanh:</p>
                             <ul style="list-style: circle; margin-left: 2rem;">
@@ -314,5 +325,63 @@
             @include('assinbar')
         </div>
     </div>
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sortSelect = document.getElementById('sort-select');
+            const resultsTbody = document.getElementById('results-tbody');
 
+
+            // Kiểm tra xem các phần tử có tồn tại không để tránh lỗi
+            if (!sortSelect || !resultsTbody) {
+                return;
+            }
+
+            // Lấy tất cả các hàng (tr) từ tbody
+            const rows = Array.from(resultsTbody.querySelectorAll('tr'));
+
+            // Lưu lại thứ tự ban đầu (theo ngày) để có thể quay lại
+            rows.forEach((row, index) => {
+                row.dataset.originalIndex = index;
+            });
+
+            // Hàm để lấy điểm số từ một hàng
+            function getScore(row) {
+                // Tìm ô chứa điểm, lấy text và chuyển sang số nguyên
+                const scoreCell = row.querySelector('td.fw-bold');
+                if (scoreCell) {
+                    // Loại bỏ ký tự '%' và chuyển thành số
+                    return parseInt(scoreCell.textContent.replace('%', ''), 10);
+                }
+                return 0; // Trả về 0 nếu không tìm thấy điểm
+            }
+
+            // Lắng nghe sự kiện 'change' trên dropdown
+            sortSelect.addEventListener('change', function() {
+                const sortValue = this.value; // Lấy giá trị của option được chọn
+
+                // Sắp xếp mảng các hàng dựa trên lựa chọn
+                rows.sort((rowA, rowB) => {
+                    if (sortValue === 'score_desc') {
+                        // Sắp xếp điểm từ cao đến thấp
+                        return getScore(rowB) - getScore(rowA);
+                    } else if (sortValue === 'score_asc') {
+                        // Sắp xếp điểm từ thấp đến cao
+                        return getScore(rowA) - getScore(rowB);
+                    } else {
+                        // Mặc định: Sắp xếp theo ngày (thứ tự ban đầu)
+                        return rowA.dataset.originalIndex - rowB.dataset.originalIndex;
+                    }
+                });
+
+                // Xóa các hàng hiện tại khỏi tbody
+                // resultsTbody.innerHTML = ''; // Cách này cũng được nhưng không hiệu quả bằng cách dưới
+
+                // Thêm lại các hàng đã được sắp xếp vào tbody
+                // Thao tác này sẽ tự động di chuyển các hàng đến vị trí mới
+                rows.forEach(row => {
+                    resultsTbody.appendChild(row);
+                });
+            });
+        });
+    </script>
 @endsection
