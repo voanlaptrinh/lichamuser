@@ -151,7 +151,7 @@
                                                         <h4 class="mb-0 title-date-chitite-tot">Bảng điểm chi tiết các ngày
                                                             tốt</h4>
                                                         <div class="d-flex align-items-center ">
-                                                            <select class="form-select" id="sort-select">
+                                                            <select class="form-select sort-select">
                                                                 <option value="date" selected>Theo ngày (Mặc định)
                                                                 </option>
                                                                 <option value="score_desc"> Cao đến thấp</option>
@@ -171,7 +171,7 @@
                                                                     <th>Giờ tốt (Hoàng Đạo)</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="results-tbody">
+                                                            <tbody class="results-tbody">
                                                                 {{-- Lọc và chỉ hiển thị những ngày có điểm TỐT hoặc RẤT TỐT --}}
 
                                                                 @forelse($data['days'] as $day)
@@ -312,61 +312,62 @@
             @include('assinbar')
         </div>
     </div>
-    <script>
+   <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const sortSelect = document.getElementById('sort-select');
-            const resultsTbody = document.getElementById('results-tbody');
+            // 1. Tìm tất cả các container của từng tab (mỗi `.tab-pane` là một tab).
+            const allTabPanes = document.querySelectorAll('.tab-pane');
 
+            // 2. Lặp qua mỗi tab để thiết lập trình sắp xếp riêng cho nó.
+            allTabPanes.forEach(tabPane => {
+                // Tìm dropdown và tbody *chỉ bên trong tab hiện tại* bằng class.
+                const sortSelect = tabPane.querySelector('.sort-select');
+                const tableBody = tabPane.querySelector('.results-tbody');
 
-            // Kiểm tra xem các phần tử có tồn tại không để tránh lỗi
-            if (!sortSelect || !resultsTbody) {
-                return;
-            }
-
-            // Lấy tất cả các hàng (tr) từ tbody
-            const rows = Array.from(resultsTbody.querySelectorAll('tr'));
-
-            // Lưu lại thứ tự ban đầu (theo ngày) để có thể quay lại
-            rows.forEach((row, index) => {
-                row.dataset.originalIndex = index;
-            });
-
-            // Hàm để lấy điểm số từ một hàng
-            function getScore(row) {
-                // Tìm ô chứa điểm, lấy text và chuyển sang số nguyên
-                const scoreCell = row.querySelector('td.fw-bold');
-                if (scoreCell) {
-                    // Loại bỏ ký tự '%' và chuyển thành số
-                    return parseInt(scoreCell.textContent.replace('%', ''), 10);
+                // 3. Nếu tab này không có bảng kết quả, bỏ qua để tránh lỗi.
+                if (!sortSelect || !tableBody) {
+                    return; // Chuyển sang tab tiếp theo.
                 }
-                return 0; // Trả về 0 nếu không tìm thấy điểm
-            }
 
-            // Lắng nghe sự kiện 'change' trên dropdown
-            sortSelect.addEventListener('change', function() {
-                const sortValue = this.value; // Lấy giá trị của option được chọn
+                // 4. Lấy tất cả các hàng <tr> của bảng này và chuyển thành mảng.
+                const rows = Array.from(tableBody.querySelectorAll('tr'));
 
-                // Sắp xếp mảng các hàng dựa trên lựa chọn
-                rows.sort((rowA, rowB) => {
-                    if (sortValue === 'score_desc') {
-                        // Sắp xếp điểm từ cao đến thấp
-                        return getScore(rowB) - getScore(rowA);
-                    } else if (sortValue === 'score_asc') {
-                        // Sắp xếp điểm từ thấp đến cao
-                        return getScore(rowA) - getScore(rowB);
-                    } else {
-                        // Mặc định: Sắp xếp theo ngày (thứ tự ban đầu)
-                        return rowA.dataset.originalIndex - rowB.dataset.originalIndex;
-                    }
+                // 5. Lưu lại thứ tự ban đầu để có thể quay về sắp xếp theo ngày.
+                rows.forEach((row, index) => {
+                    row.dataset.originalIndex = index;
                 });
 
-                // Xóa các hàng hiện tại khỏi tbody
-                // resultsTbody.innerHTML = ''; // Cách này cũng được nhưng không hiệu quả bằng cách dưới
+                // 6. Hàm tiện ích để lấy điểm số từ một hàng.
+                function getScore(row) {
+                    const scoreCell = row.querySelector('td.fw-bold');
+                    if (scoreCell) {
+                        // parseInt sẽ tự động bỏ qua các ký tự không phải số ở cuối chuỗi.
+                        return parseInt(scoreCell.textContent, 10);
+                    }
+                    return 0; // Trả về 0 nếu không tìm thấy điểm.
+                }
 
-                // Thêm lại các hàng đã được sắp xếp vào tbody
-                // Thao tác này sẽ tự động di chuyển các hàng đến vị trí mới
-                rows.forEach(row => {
-                    resultsTbody.appendChild(row);
+                // 7. Gắn sự kiện 'change' vào dropdown của *tab này*.
+                sortSelect.addEventListener('change', function() {
+                    const sortValue = this.value; // Lấy giá trị đã chọn (vd: 'score_desc').
+
+                    // Sắp xếp mảng `rows` dựa trên lựa chọn.
+                    rows.sort((rowA, rowB) => {
+                        if (sortValue === 'score_desc') {
+                            // Sắp xếp điểm giảm dần (cao đến thấp).
+                            return getScore(rowB) - getScore(rowA);
+                        } else if (sortValue === 'score_asc') {
+                            // Sắp xếp điểm tăng dần (thấp đến cao).
+                            return getScore(rowA) - getScore(rowB);
+                        } else {
+                            // Mặc định ('date'): Sắp xếp theo thứ tự ban đầu.
+                            return rowA.dataset.originalIndex - rowB.dataset.originalIndex;
+                        }
+                    });
+
+                    // 8. Cập nhật lại DOM: Chèn các hàng đã sắp xếp vào lại tbody.
+                    rows.forEach(row => {
+                        tableBody.appendChild(row);
+                    });
                 });
             });
         });

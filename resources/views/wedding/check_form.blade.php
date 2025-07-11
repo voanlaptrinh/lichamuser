@@ -87,7 +87,7 @@
                                             <div class="tab-pane fade @if ($loop->first) show active @endif"
                                                 id="tab-{{ $year }}" role="tabpanel"
                                                 aria-labelledby="tab-{{ $year }}-tab">
-                                                
+
                                                 {{-- Phân tích --}}
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -163,41 +163,29 @@
                                                         năm này.
                                                     </div>
                                                 @else
-                                                    <div class="d-flex justify-content-between">
+                                                    <div class="d-flex justify-content-between align-items-center">
                                                         <div>
                                                             <h5 class="mb-3 title-date-chitite-tot">Bảng điểm chi tiết các ngày</h4>
                                                         </div>
 
-                                                        <!-- START: Thêm Dropdown sắp xếp -->
                                                         <div class="row mb-3">
                                                             <div class="col-md-12">
-                                                               
-                                                                <select class="form-select" id="dateSortSelect">
-                                                                    <option value="date_asc" selected>Thứ tự ngày (Mặc định)
-                                                                    </option>
-                                                                    <option value="total_desc">Tổng điểm (Cao đến Thấp)
-                                                                    </option>
-                                                                    <option value="total_asc">Tổng điểm (Thấp đến Cao)
-                                                                    </option>
-                                                                    <option value="groom_desc">Điểm Chú Rể (Cao đến Thấp)
-                                                                    </option>
-                                                                    <option value="groom_asc">Điểm Chú Rể (Thấp đến Cao)
-                                                                    </option>
-                                                                    <option value="bride_desc">Điểm Cô Dâu (Cao đến Thấp)
-                                                                    </option>
-                                                                    <option value="bride_asc">Điểm Cô Dâu (Thấp đến Cao)
-                                                                    </option>
+                                                                {{-- SỬA Ở ĐÂY: Đổi từ id thành class --}}
+                                                                <select class="form-select date-sort-select">
+                                                                    <option value="date_asc" selected>Thứ tự ngày (Mặc định)</option>
+                                                                    <option value="total_desc">Tổng điểm (Cao đến Thấp)</option>
+                                                                    <option value="total_asc">Tổng điểm (Thấp đến Cao)</option>
+                                                                    <option value="groom_desc">Điểm Chú Rể (Cao đến Thấp)</option>
+                                                                    <option value="groom_asc">Điểm Chú Rể (Thấp đến Cao)</option>
+                                                                    <option value="bride_desc">Điểm Cô Dâu (Cao đến Thấp)</option>
+                                                                    <option value="bride_asc">Điểm Cô Dâu (Thấp đến Cao)</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <!-- END: Thêm Dropdown sắp xếp -->
-
-
                                                     <div class="table-responsive">
-                                                        <table
-                                                            class="table table-bordered table-hover text-center align-middle tabl-repont">
+                                                        <table class="table table-bordered table-hover text-center align-middle tabl-repont">
                                                             <thead class="table-light">
                                                                 <tr>
                                                                     <th rowspan="2" class="align-middle">Ngày Dương</th>
@@ -212,12 +200,10 @@
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($data['days'] as $day)
-                                                    
                                                                     <tr data-date="{{ $day['date']->format('Y-m-d') }}"
                                                                         data-groom-score="{{ $day['groom_score']['percentage'] }}"
                                                                         data-bride-score="{{ $day['bride_score']['percentage'] }}"
                                                                         data-total-score="{{ ($day['groom_score']['percentage'] + $day['bride_score']['percentage']) / 2 }}">
-                                                                        {{-- END: Thêm các data-attribute --}}
                                                                         <td>
                                                                             <strong>{{ $day['date']->format('d/m/Y') }}</strong><br>
                                                                             <small>Thứ {{ $day['weekday_name'] }}</small>
@@ -227,10 +213,9 @@
                                                                             {{ $day['full_lunar_date_str'] }}
                                                                             @if (!empty($day['good_hours']))
                                                                                 <div class="mt-2">
-                                                                                    <span class="text-danger"><i
-                                                                                            class="far fa-clock"></i>
-                                                                                        <strong>Gợi ý giờ
-                                                                                            tốt:</strong></span><br>
+                                                                                    <span class="text-danger"><i class="far fa-clock"></i>
+                                                                                        <strong>Gợi ý giờ tốt:</strong>
+                                                                                    </span><br>
                                                                                     <span>{{ implode('; ', $day['good_hours']) }}.</span>
                                                                                 </div>
                                                                             @endif
@@ -251,13 +236,14 @@
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
-                                                    </div>>
+                                                    </div>
                                                 @endif
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
                             @else
+                                {{-- Giữ nguyên phần nội dung mặc định --}}
                                 <h4>
                                     Vì Sao Việc Chọn Ngày Cưới Hỏi Lại Quan Trọng Đến Vậy?
                                 </h4>
@@ -354,74 +340,69 @@
         </div>
     </div>
 
+    {{-- SỬA Ở ĐÂY: Toàn bộ khối script đã được cập nhật --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Lấy các element cần thiết
-            const sortSelect = document.getElementById('dateSortSelect');
-            const tableBody = document.querySelector('.table tbody');
+            // 1. Tìm tất cả các container của tab (`.tab-pane`). Mỗi tab (ví dụ: Năm 2024, Năm 2025) là một .tab-pane.
+            const allTabPanes = document.querySelectorAll('.tab-pane');
 
-            // Chuyển tất cả các dòng <tr> thành một mảng các đối tượng để dễ xử lý.
-            // Việc này chỉ cần làm một lần khi trang tải xong.
-            const rows = Array.from(tableBody.querySelectorAll('tr'));
+            // 2. Lặp qua từng container tab để thiết lập chức năng sắp xếp độc lập cho nó.
+            allTabPanes.forEach(tabPane => {
+                // Tìm dropdown và tbody *chỉ bên trong tab hiện tại*.
+                // Chúng ta dùng class `.date-sort-select` thay vì id.
+                const sortSelect = tabPane.querySelector('.date-sort-select');
+                const tableBody = tabPane.querySelector('tbody');
 
-            // Thêm sự kiện 'change' cho dropdown
-            sortSelect.addEventListener('change', function() {
-                // Lấy giá trị của lựa chọn (ví dụ: 'total_desc')
-                const sortBy = this.value;
+                // 3. QUAN TRỌNG: Nếu một tab không có bảng (ví dụ, một năm không có ngày nào phù hợp),
+                //    các câu lệnh querySelector ở trên sẽ trả về null. Chúng ta phải kiểm tra điều này để tránh lỗi.
+                if (!sortSelect || !tableBody) {
+                    return; // Bỏ qua tab này và chuyển sang tab tiếp theo.
+                }
 
-                // Gọi hàm sắp xếp
-                sortRows(sortBy);
+                // 4. Lấy tất cả các hàng <tr> cho *bảng này*.
+                //    Chuyển NodeList thành một Array để có thể dùng phương thức sort().
+                let rows = Array.from(tableBody.querySelectorAll('tr'));
+
+                // 5. Gắn sự kiện 'change' vào dropdown *của tab này*.
+                sortSelect.addEventListener('change', function() {
+                    const sortBy = this.value; // Lấy tiêu chí sắp xếp đã chọn
+
+                    // 6. Sắp xếp mảng `rows` cho tab này.
+                    //    Nhờ closure trong JavaScript, hàm này có thể truy cập biến `rows`
+                    //    đã được định nghĩa riêng cho mỗi tab.
+                    rows.sort((rowA, rowB) => {
+                        const dateA = rowA.dataset.date;
+                        const dateB = rowB.dataset.date;
+
+                        const totalA = parseFloat(rowA.dataset.totalScore);
+                        const totalB = parseFloat(rowB.dataset.totalScore);
+
+                        const groomA = parseFloat(rowA.dataset.groomScore);
+                        const groomB = parseFloat(rowB.dataset.groomScore);
+
+                        const brideA = parseFloat(rowA.dataset.brideScore);
+                        const brideB = parseFloat(rowB.dataset.brideScore);
+
+                        switch (sortBy) {
+                            case 'total_desc': return totalB - totalA;
+                            case 'total_asc':  return totalA - totalB;
+                            case 'groom_desc': return groomB - groomA;
+                            case 'groom_asc':  return groomA - groomB;
+                            case 'bride_desc': return brideB - brideA;
+                            case 'bride_asc':  return brideA - brideB;
+                            case 'date_asc':
+                            default:           return dateA.localeCompare(dateB);
+                        }
+                    });
+
+                    // 7. Vẽ lại tbody của bảng với các hàng đã được sắp xếp.
+                    //    Xóa nội dung cũ và chèn lại các hàng theo thứ tự mới.
+                    tableBody.innerHTML = '';
+                    rows.forEach(row => {
+                        tableBody.appendChild(row);
+                    });
+                });
             });
-
-            /**
-             * Hàm chính để sắp xếp các dòng trong bảng
-             * @param {string} sortBy - Tiêu chí sắp xếp
-             */
-            function sortRows(sortBy) {
-                rows.sort((rowA, rowB) => {
-                    // Lấy dữ liệu từ các data-attribute
-                    const dateA = rowA.dataset.date;
-                    const dateB = rowB.dataset.date;
-
-                    const totalA = parseFloat(rowA.dataset.totalScore);
-                    const totalB = parseFloat(rowB.dataset.totalScore);
-
-                    const groomA = parseFloat(rowA.dataset.groomScore);
-                    const groomB = parseFloat(rowB.dataset.groomScore);
-
-                    const brideA = parseFloat(rowA.dataset.brideScore);
-                    const brideB = parseFloat(rowB.dataset.brideScore);
-
-                    // Dùng switch-case để xử lý các trường hợp sắp xếp
-                    switch (sortBy) {
-                        case 'total_desc':
-                            return totalB - totalA; // Sắp xếp giảm dần
-                        case 'total_asc':
-                            return totalA - totalB; // Sắp xếp tăng dần
-                        case 'groom_desc':
-                            return groomB - groomA;
-                        case 'groom_asc':
-                            return groomA - groomB;
-                        case 'bride_desc':
-                            return brideB - brideA;
-                        case 'bride_asc':
-                            return brideA - brideB;
-                        case 'date_asc':
-                        default:
-                            // So sánh chuỗi ngày tháng ( định dạng Y-m-d so sánh được)
-                            return dateA.localeCompare(dateB);
-                    }
-                });
-
-                // Sau khi đã sắp xếp mảng `rows`, cập nhật lại DOM
-                // Xóa tất cả các dòng hiện tại trong tbody
-                tableBody.innerHTML = '';
-
-                // Thêm lại các dòng đã được sắp xếp vào tbody
-                rows.forEach(row => {
-                    tableBody.appendChild(row);
-                });
-            }
         });
     </script>
 @endsection
